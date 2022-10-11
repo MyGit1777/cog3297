@@ -1,0 +1,21 @@
+<html>
+
+<body>
+
+    <script lang="eng" type="text/javascript">
+
+        document.write("This is javascript code")
+        var a = 23;
+        let b = "Avinash"
+        // <noscript> This js is not supported</noscript> 
+        function welcome() {
+            var promt = prompt("You have clicked in the input, type ypur message");
+            console.log("Clicked");
+            alert("Your message: " + promt);
+
+        }
+    </script>
+    <input type="button" onclick="welcome()" value="Click to check">
+</body>
+
+</html>
