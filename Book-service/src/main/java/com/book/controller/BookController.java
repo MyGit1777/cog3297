@@ -1,7 +1,5 @@
 package com.book.controller;
 
-
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,88 +22,65 @@ import com.book.components.Book;
 import com.book.repository.SubscriberDetailsRepository;
 import com.book.service.BookService;
 
-
 @ComponentScan
 @RestController
 @RequestMapping("/book")
 public class BookController {
-	
+
 	@Autowired
 	private BookService bookService;
-	
+
 	@Autowired
 	private SubscriberDetailsRepository subsService;
-	
-//	@Autowired
-//	RestTemplate restTemplate;
-	
-//	@Bean
-//	public RestTemplate getRestTemplate() {
-//		
-//		return new RestTemplate();
-//	}
-	
+
 	@GetMapping("/{authorId}")
-	public Book getUser(@PathVariable("authorId") int authorId) {//replace with json
-		
+	public Book getUser(@PathVariable("authorId") int authorId) {// replace with json
+
 		Book book = bookService.findBookByAuthorId(authorId);
-		
-				
-			//	books =this.restTemplate.getForObject("localhost", List.class);
-//		
-//		JSONObject jsonObject = new JSONObject();
-//		
-//		jsonObject.put("message", "Hello world");
-//		jsonObject.put("message2", restTemplate.exchange("localhostrl/", HttpMethod.GET, String.class).getBody());
-//		
-//		return books.stream().filter(e->e.getAuthorId()==authorId).collect(Collectors.toList());
-		
+
 		return book;
 	}
-	
+
 	@PostMapping("/create")
 	public ResponseEntity<String> createBook(@RequestBody Book book) {
 		System.out.println(book.getBookTitle() + "Created");
 		return ResponseEntity.status(HttpStatus.CREATED).body((bookService.createBook(book)));
-		
-		
+
 	}
-	
+
 	@PutMapping("/update")
 	public ResponseEntity<String> updateBook(@RequestBody Book book) {
-		
+
 		return ResponseEntity.status(HttpStatus.CREATED).body((bookService.updateBook(book)));
-		
-		
+
 	}
-	
+
 	@GetMapping("/subscribe/{authorId}/{subscribedBy}")
-	public Long subscribeBook(@PathVariable  Long authorId, @PathVariable String subscribedBy) {
-		
+	public Long subscribeBook(@PathVariable Long authorId, @PathVariable String subscribedBy) {
+
 		return bookService.subscribeBook(authorId, subscribedBy);
-		
-		
+
 	}
-	
+
 	@GetMapping("/search")
 	public ResponseEntity<Book> searchBook(@RequestBody Book book) {
-		
+
 		return ResponseEntity.status(HttpStatus.FOUND).body(bookService.searchBookByTitleAndAuthorName(book));
-		
-		
+
 	}
+
 	@GetMapping("/getAllBooks")
 	public List<Book> getAllBooks(@RequestBody Book book) {
-		//We will filter it in serviceImpl
+		// We will filter it in serviceImpl
 		List<Book> searchedBooks = bookService.getAllBooks(book);
-		return searchedBooks;			
+		return searchedBooks;
 	}
-	
+
 	@GetMapping("/subsciberSearch/{subscribedBy}")
 	public List<Book> searchBooksBySubscription(@PathVariable String subscribedBy) {
-		
+
 		List<Book> searchedBooks = bookService.getAllBooksSubscribedByUser(subscribedBy);
-		return searchedBooks;		
-		
+		return searchedBooks;
+
 	}
 }
