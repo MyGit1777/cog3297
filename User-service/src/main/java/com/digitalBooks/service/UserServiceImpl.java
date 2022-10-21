@@ -12,48 +12,33 @@ import com.digitalBooks.repository.UserRepository;
 @Service
 public class UserServiceImpl implements UserService {
 
-	
-	//List<User> users = List.of(new User(12, "Avinash"),new User(15, "Marc") );
-	
-
-	
-//	@Override
-//	public User getUser(int userId) {
-//		return users.stream().filter(u->u.getUserId()==(userId)).collect(Collectors.toList()).get(0);
-//	}
-	
 	@org.springframework.beans.factory.annotation.Autowired
 	private UserRepository userRepository;
 
 	@Override
-	public User createUser(User user)
-	{
+	public User createUser(User user) {
 		User createdUser = userRepository.save(user);
 		return createdUser;
 	}
 
-	
 	@Override
-	public User getUser(int userId)
-	{
+	public User getUser(int userId) {
 		Optional<User> optional = userRepository.findById(userId);
 		User user = optional.get();
 		return user;
 	}
 
-
 	@Override
-	public Optional<User> getUserByUserNameAndPassword(String userName, String password ) {
-		
+	public Optional<User> getUserByUserNameAndPassword(String userName, String password) {
+
 		List<User> users = userRepository.findAll();
-        for (User user : users) {
-            if (user.getUserName().equals(userName) && user.getPassword().equals(password) ) {
-            	return Optional.ofNullable(user);
-            	
-            }
-        }
+		for (User user : users) {
+			if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+				return Optional.ofNullable(user);
+
+			}
+		}
 		return null;
-		
-		
+
 	}
 }
