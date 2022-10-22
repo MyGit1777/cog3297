@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.digitalBooks.booksHelper.BooksList;
+import com.digitalBooks.booksHelper.FilterBooksList;
 import com.digitalBooks.components.Book;
 import com.digitalBooks.components.User;
 import com.digitalBooks.controller.apiHelper.HttpComponentsClientHttpRequestWithBodyFactory;
@@ -106,7 +107,7 @@ public class UserController {
 
 	}
 
-	// For get book
+	// For get book, will return results based on title and author
 	@GetMapping("/search/book")
 	public ResponseEntity<Book> getBook(@RequestBody Book book) {
 
@@ -118,14 +119,23 @@ public class UserController {
 
 	}
 
+	//Will return all books based on search criteria, for guest/ we have to implement functionalities at UI
 	@GetMapping("/book/getAll")
 	public List<Book> getAllBooks(@RequestBody Book book) {
 
 		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
-		ResponseEntity<Book> allBooks = resTemplate.exchange("http://Book-service/book/search", HttpMethod.GET,
-				new HttpEntity<>(book), Book.class);
-		List<Book> result = Arrays.asList(allBooks.getBody());
-		return result;
+		
+		ResponseEntity<Book[]> response = resTemplate
+				.getForEntity("http://Book-service/book/getAllBooks", Book[].class);
+		
+		List<Book> returnedBooks = Arrays.asList(response.getBody());
+		
+		
+//		ResponseEntity<BooksList> allBooks = resTemplate.exchange("http://Book-service/book/getAllBooks", HttpMethod.GET,
+//				new HttpEntity<>(book), BooksList.class);
+//		BooksList result = allBooks.getBody();
+//		return result.getBooks();
+		return FilterBooksList.filterBooks(returnedBooks, book);
 
 	}
 
