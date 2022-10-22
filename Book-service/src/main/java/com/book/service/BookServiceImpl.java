@@ -67,7 +67,7 @@ public class BookServiceImpl implements BookService {
 
 	// Get all books for geust, author and reader
 	@Override
-	public List<Book> getAllBooks(Book book) {
+	public List<Book> getAllBooks() {
 		List<Book> books = booksRepo.findAll();
 		return books;
 	}
@@ -102,5 +102,4 @@ public class BookServiceImpl implements BookService {
 				.filter(s -> s.getSubscribedBy().equalsIgnoreCase(subscribedBy) && s.getAuthorId().equals(authorId))
 				.findAny().get().getSubId();
 	}
-
 }

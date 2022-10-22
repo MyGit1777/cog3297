@@ -10,7 +10,7 @@ import com.book.components.User;
 public interface BookService {
 	public Book findBookByAuthorId(int authorId);
 
-	public List<Book> getAllBooks(Book book);
+	public List<Book> getAllBooks();
 	public Book searchBook(Book book);
 	public Book searchBookByTitleAndAuthorName(Book book);
 

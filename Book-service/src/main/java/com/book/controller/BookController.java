@@ -54,7 +54,7 @@ public class BookController {
 		return ResponseEntity.status(HttpStatus.CREATED).body((bookService.updateBook(book)));
 
 	}
-
+	//subscribe a book
 	@GetMapping("/subscribe/{authorId}/{subscribedBy}")
 	public Long subscribeBook(@PathVariable Long authorId, @PathVariable String subscribedBy) {
 
@@ -62,20 +62,22 @@ public class BookController {
 
 	}
 
+	//Returns book based on book title and author name
 	@GetMapping("/search")
 	public ResponseEntity<Book> searchBook(@RequestBody Book book) {
 
 		return ResponseEntity.status(HttpStatus.FOUND).body(bookService.searchBookByTitleAndAuthorName(book));
 
 	}
-
+	// Return all books
 	@GetMapping("/getAllBooks")
-	public List<Book> getAllBooks(@RequestBody Book book) {
+	public List<Book> getAllBooks() {
 		// We will filter it in serviceImpl
-		List<Book> searchedBooks = bookService.getAllBooks(book);
+		List<Book> searchedBooks = bookService.getAllBooks();
 		return searchedBooks;
 	}
 
+	//Returns all books subscribed by user
 	@GetMapping("/subsciberSearch/{subscribedBy}")
 	public List<Book> searchBooksBySubscription(@PathVariable String subscribedBy) {
 
