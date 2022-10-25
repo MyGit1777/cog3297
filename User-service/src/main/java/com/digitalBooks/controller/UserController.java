@@ -53,8 +53,8 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.CREATED).body((userService.createUser(user)));
 
 	}
-
-	@GetMapping("/find")
+	//Login for user
+	@GetMapping("/login")
 	public ResponseEntity<Object> getUserByNameAndPassword(@RequestBody User loginUser) {
 
 		Optional<User> user = userService.getUserByUserNameAndPassword(loginUser.getUserName(),
@@ -84,7 +84,7 @@ public class UserController {
 
 	}
 
-	// For put book
+	// For updating book
 	@PutMapping("/update/book")
 	public HttpStatus updateBook(@RequestBody Book book) {
 

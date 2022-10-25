@@ -2,8 +2,8 @@ package com.digitalBooks.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import com.digitalBooks.components.User;
@@ -17,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User user) {
+
+		String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+		user.setPassword(hashedPassword);
 		User createdUser = userRepository.save(user);
 		return createdUser;
 	}
@@ -33,7 +36,8 @@ public class UserServiceImpl implements UserService {
 
 		List<User> users = userRepository.findAll();
 		for (User user : users) {
-			if (user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+
+			if (user.getUserName().equals(userName) && BCrypt.checkpw(password, user.getPassword())) {
 				return Optional.ofNullable(user);
 
 			}
