@@ -12,25 +12,34 @@ import com.digitalBooks.components.UserCredentials;
 import com.digitalBooks.repository.UserRepository;
 
 @Component("userLoginSecurity")
-public class UserLoginSecurity implements UserDetailsService {
+public class UserLoginSecurity {
 
 	@Autowired
 	UserRepository userRepository;
 
-	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		User user = userRepository.findByUserName(userName);
-		if (user == null) {
-			throw new UsernameNotFoundException("Username not found");
+	/*
+	 * @Override public UserDetails loadUserByUsername(String userName) throws
+	 * UsernameNotFoundException { User user =
+	 * userRepository.findByUserName(userName); if (user == null) { throw new
+	 * UsernameNotFoundException("Username not found");
+	 * 
+	 * } return new UserCredentials(user); }
+	 */
 
+	public boolean isUserNameVerified(Authentication authentication, String userToVerify) {
+
+		String userName = userRepository.findByUserName(authentication.getName()).getUserName();
+		if (userName != null && userName.equals(userToVerify)) {
+			return true;
+		} else {
+			return false;
 		}
-		return new UserCredentials(user);
 	}
 
-	public boolean isUserIdVerified(Authentication authentication, Integer userIdToVerify) {
+	public boolean isUserIdVerified(Authentication authentication, Integer userToVerify) {
 
 		int userId = userRepository.findByUserName(authentication.getName()).getUserId();
-		if (userId == userIdToVerify) {
+		if (userId == userToVerify) {
 			return true;
 		} else {
 			return false;

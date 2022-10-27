@@ -59,7 +59,7 @@ public class UserController {
 
 		Optional<User> user = userService.getUserByUserNameAndPassword(loginUser.getUserName(),
 				loginUser.getPassword());
-		if (user.isPresent()) {
+		if (user != null && user.isPresent()) {
 			return new org.springframework.http.ResponseEntity<>(user.get(), HttpStatus.OK);
 
 		} else {
