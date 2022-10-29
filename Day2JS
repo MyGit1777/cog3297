@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h2>Practicing JS Code</h2>
+
+    <p id="practiceone">JavaScript can change HTML content.</p>
+
+    <button type="button" onclick='document.getElementById("practiceone").innerHTML = "Hello JavaScript!"'>Click
+        Me!</button>
+        <button type="button2" onclick='exponential()'>
+    <script>
+        window.alert("Your will be taken to home page");
+
+        function exponential(){
+
+        let x = 5;
+        let z = x ** 2;
+        console.log(z)
+        }
+
+
+    </script>
+</body>
+
+</html>

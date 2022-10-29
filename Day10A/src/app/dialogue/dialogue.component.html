@@ -1,0 +1,55 @@
+<h1 mat-dialogue-title>Fruit Details</h1>
+<div mat-dialogue-content>
+    <form [formGroup]="fruitForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Fruit Name</mat-label>
+            <input formControlName="fruitName" matInput placeholder="Enter text here...">
+            <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Fruit Category</mat-label>
+            <mat-select formControlName="fruitCategory" placeholder="Fruit category">
+                <mat-option value="A">A</mat-option>
+                <mat-option value="B">B</mat-option>
+                <mat-option value="C">C</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Available Date</mat-label>
+            <input formControlName="fruitAvailableDate" matInput [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- <label id="example-radio-group-label">Fruit Status</label> -->
+        <label for="">
+            <h1>Status</h1>
+        </label>
+        <mat-radio-group formControlName="fruitStatus" class="example-radio-group">
+            <mat-radio-button class="example-radio-button" *ngFor="let fruitStatus of status" [value]="fruitStatus">
+                {{fruitStatus}}
+            </mat-radio-button>
+        </mat-radio-group>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Price</mat-label>
+            <input formControlName="fruitPrice" matInput placeholder="Fruit price">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>Comment</mat-label>
+            <textarea formControlName="comments" matInput placeholder="Comment"></textarea>
+        </mat-form-field>
+
+    </form>
+
+    <div mat-dialogue-action [align]="'end'">
+        <button mat-raised-button color="warn" mat-dialogue-close>Exit</button>
+        <button style="margin-left: 10px;" mat-raised-button color="primary" (click)="addFruit()"
+            mat-dialogue-close>Save</button>
+    </div>
+
+</div>

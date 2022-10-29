@@ -1,0 +1,14 @@
+var msg: String = "Welcome to TS";
+console.log(msg);
+
+class Welcome{
+   greet():void{
+
+        console.log("This is TS !!!");
+     }
+
+
+}
+
+var wel = new Welcome();
+wel.greet();
