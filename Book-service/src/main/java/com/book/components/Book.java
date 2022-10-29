@@ -8,9 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+@Data
+@Builder
+@AllArgsConstructor
 @Entity
 @Table(name="book")
 public class Book {
@@ -50,15 +57,24 @@ public class Book {
 	@Column(name="SUBUSER")
 	private String subscribedBy; //userName
 	
-	@Column(name="SUBSCRIPTIONID")
-	private int subscriptionId;
+
+	@Column(name = "LOGO", unique = false, nullable = false, length = 100000)
+	private byte[] logo;
+
+	@Column(name = "IMAGENAME")
+	private String imageName;
+
+	@Column(name = "IMAGETYPE")
+	private String imageType;
+	
+	
 	
 //	 @OneToMany(targetEntity = SubscriberDetails.class, cascade = CascadeType.ALL)
 //	 @JoinColumn(name ="sub_key",referencedColumnName = "authorId", insertable = true)
 //	private List<SubscriberDetails> subscribers; 
 
 	public Book(Long authorId, String author, String bookTitle, String category, String publisher, boolean active,
-			String publishedDate, int price, String status, String chapter, String subscribedBy, int subscriptionId,
+			String publishedDate, int price, String status, String chapter, String subscribedBy,
 			List<SubscriberDetails> subscribers) {
 		super();
 		this.authorId = authorId;
@@ -72,17 +88,7 @@ public class Book {
 		this.status = status;
 		this.chapter = chapter;
 		this.subscribedBy = subscribedBy;
-		this.subscriptionId = subscriptionId;
-	}
-
-	
-
-	public int getSubscriptionId() {
-		return subscriptionId;
-	}
-
-	public void setSubscribedBy(String subscribedBy) {
-		this.subscribedBy = subscribedBy;
+		
 	}
 
 	public String getAuthor() {
@@ -169,20 +175,8 @@ public class Book {
 		return subscribedBy;
 	}
 
-//	public void setSubscribedBy(String subscribedBy) {
-//		this.subscribedBy = subscribedBy;
-//	}
-//
-//	public Long getSubscriptionId() {
-//		return subscriptionId;
-//	}
-
-	public void setSubscriptionId(int subscriptionId) {
-		this.subscriptionId = subscriptionId;
-	}
-
 	public Book(Long authorId, String author, String bookTitle, String category, String publisher, boolean active,
-			String publishedDate, int price, String status, String chapter, String subscribedBy, int subscriptionId) {
+			String publishedDate, int price, String status, String chapter, String subscribedBy) {
 		super();
 		this.authorId = authorId;
 		this.author = author;
@@ -195,7 +189,6 @@ public class Book {
 		this.status = status;
 		this.chapter = chapter;
 		this.subscribedBy = subscribedBy;
-		this.subscriptionId = subscriptionId;
 	}
 
 	public Book() {
@@ -203,6 +196,5 @@ public class Book {
 	}
 
 	public Book(Book book) {
-		// TODO Auto-generated constructor stub
 	}
 }

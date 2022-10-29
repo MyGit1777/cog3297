@@ -73,8 +73,8 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public Book findBookByAuthorId(int authorId) {
-		return null;
+	public Book findBookByAuthorId(Long authorId) {
+		return booksRepo.getById(authorId);
 	}
 
 	@Override

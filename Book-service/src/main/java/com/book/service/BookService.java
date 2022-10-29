@@ -8,7 +8,7 @@ import com.book.components.Book;
 import com.book.components.User;
 
 public interface BookService {
-	public Book findBookByAuthorId(int authorId);
+	public Book findBookByAuthorId(Long authorId);
 
 	public List<Book> getAllBooks();
 	public Book searchBook(Book book);
