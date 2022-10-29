@@ -1,0 +1,18 @@
+<h1>Add New Courses</h1>
+<div class="container">
+  <h2> Add new Course</h2>
+  <form #addcourseform="ngForm" (ngSubmit)="addCourseformsubmit()">
+    <!-- {{course | json}} -->
+    <div class="form-group">
+      <label for="id">Id:</label>
+      <input type="text" class="form-control" required [(ngModel)]="course.id" name="id">
+    </div>
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control" required [(ngModel)]="course.title" name="title">
+    </div>
+    
+    <button type="submit" class="btn btn-success">Submit</button>
+    <button type="submit" class="btn btn-secondary" (click)="gotolist()">Back</button>
+  </form>
+</div>
