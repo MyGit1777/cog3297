@@ -1,5 +1,6 @@
 package com.digitalBooks.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -7,11 +8,16 @@ import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.digitalBooks.booksHelper.BooksList;
 import com.digitalBooks.booksHelper.FilterBooksList;
 import com.digitalBooks.components.Book;
 import com.digitalBooks.components.User;
@@ -53,7 +59,8 @@ public class UserController {
 		return ResponseEntity.status(HttpStatus.CREATED).body((userService.createUser(user)));
 
 	}
-	//Login for user
+
+	// Login for user
 	@GetMapping("/login")
 	public ResponseEntity<Object> getUserByNameAndPassword(@RequestBody User loginUser) {
 
@@ -95,6 +102,51 @@ public class UserController {
 
 	}
 
+	@PostMapping("/save/logo/{authorId}")
+	public HttpStatus saveLogo(@PathVariable("authorId") Long authorId, @RequestParam("logo") MultipartFile logo)
+			throws IOException {
+		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
+
+		String fileName = logo.getOriginalFilename();
+		byte[] fileContent = logo.getBytes();
+
+		HttpHeaders parts = new HttpHeaders();
+		parts.setContentType(MediaType.TEXT_PLAIN);
+		final ByteArrayResource byteArrayResource = new ByteArrayResource(fileContent) {
+			@Override
+			public String getFilename() {
+				return fileName;
+			}
+		};
+		final HttpEntity<ByteArrayResource> partsEntity = new HttpEntity<>(byteArrayResource, parts);
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+		MultiValueMap<String, Object> requestMap = new LinkedMultiValueMap<>();
+		requestMap.add("logo", partsEntity);
+
+//		final ParameterizedTypeReference<> typeReference = new ParameterizedTypeReference<>() {
+//		};
+
+		ResponseEntity<String> res = resTemplate.exchange("http://Book-service/book/upload/logo/" + authorId,
+				HttpMethod.POST, new HttpEntity<>(requestMap, headers), String.class);
+
+		return HttpStatus.OK;
+	}
+
+	// Get logo
+	@GetMapping(value = "/get/logo/{authorId}", produces = MediaType.IMAGE_JPEG_VALUE)
+	public byte[] getLogo(@PathVariable Long authorId) {
+
+		// HttpEntity<Book> request = new HttpEntity<>(new Book(book));
+
+		byte[] responseLogo = resTemplate.getForObject("http://Book-service/book/get/logo/" + authorId, byte[].class);
+		return responseLogo;
+
+	}
+
 	// Subscibe a book
 	@GetMapping("/subscribe/book/{authorId}/{subscribedBy}")
 	public Long subscribeBook(@PathVariable Long authorId, @PathVariable String subscribedBy) {
@@ -119,18 +171,18 @@ public class UserController {
 
 	}
 
-	//Will return all books based on search criteria, for guest/ we have to implement functionalities at UI
+	// Will return all books based on search criteria, for guest/ we have to
+	// implement functionalities at UI
 	@GetMapping("/book/getAll")
 	public List<Book> getAllBooks(@RequestBody Book book) {
 
 		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
-		
-		ResponseEntity<Book[]> response = resTemplate
-				.getForEntity("http://Book-service/book/getAllBooks", Book[].class);
-		
+
+		ResponseEntity<Book[]> response = resTemplate.getForEntity("http://Book-service/book/getAllBooks",
+				Book[].class);
+
 		List<Book> returnedBooks = Arrays.asList(response.getBody());
-		
-		
+
 //		ResponseEntity<BooksList> allBooks = resTemplate.exchange("http://Book-service/book/getAllBooks", HttpMethod.GET,
 //				new HttpEntity<>(book), BooksList.class);
 //		BooksList result = allBooks.getBody();

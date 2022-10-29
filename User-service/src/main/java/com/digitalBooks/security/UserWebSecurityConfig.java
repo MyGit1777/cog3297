@@ -70,6 +70,7 @@ public class UserWebSecurityConfig extends WebSecurityConfigurerAdapter {
 //				//.antMatchers(HttpMethod.POST, "/user/create").hasAnyRole("GUEST")
 //				.antMatchers(HttpMethod.GET, "/user/login").hasAnyRole("GUEST", "READER", "AUTHOR")
 				.antMatchers(HttpMethod.POST, "/user/create/book").hasAnyRole("AUTHOR")
+				//.antMatchers(HttpMethod.POST, "/user/save/logo/{authorId}").hasAnyRole("AUTHOR")
 				.antMatchers(HttpMethod.PUT, "/user/update/book").hasAnyRole("AUTHOR")
 				.antMatchers(HttpMethod.GET, "/user/subscribe/book/{authorId}/{subscribedBy}")
 				.access("@userLoginSecurity.isUserNameVerified(authentication,#subscribedBy)")
