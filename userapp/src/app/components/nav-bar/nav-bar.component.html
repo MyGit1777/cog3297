@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">  
+<span>   
+<a mat-icon-button routerLink="/"> Digital Book Home</a></span>
+<span class="example-spacer"></span>
+<a *ngIf="!loggedIn"matt-icon-button routerLink="/login">Login</a>
+<a *ngIf="loggedIn" matt-icon-button >User</a>
+<a *ngIf="loggedIn" (click)="logoutUser()" matt-icon-button style="margin-left: 10px;">  Logout</a>
+</mat-toolbar>
