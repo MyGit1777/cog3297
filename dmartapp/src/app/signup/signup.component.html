@@ -1,0 +1,17 @@
+<div class="container col-md-7 margin-t text-center">
+  <h1>Register yourself</h1>
+
+  <form #addform="ngForm" (ngSubmit)="addNewUser()">
+    <div class="form-group container col-md-4">
+      <label for="userName">User name</label>
+      <input type="text" class="form-control" [(ngModel)]="user.userName" name="userName">
+    </div>
+    <div class="form-group container col-md-4">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" required [(ngModel)]="user.password" name="password">
+    </div>
+  
+    <button type="submit" class="btn btn-success margin-t">Submit</button>
+    <button type="submit" style="margin-left: 5px;" class="btn btn-secondary margin-t" routerLink="/home">Back</button>
+  </form>
+</div>

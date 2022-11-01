@@ -16,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ViewsingleproductComponent } from './viewsingleproduct/viewsingleproduct.component';
+import { SignupComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ViewsingleproductComponent } from './viewsingleproduct/viewsingleproduc
     DeleteProductsComponent,
     NavbarComponent,
     HomeComponent,
-    ViewsingleproductComponent
+    ViewsingleproductComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { ViewsingleproductComponent } from './viewsingleproduct/viewsingleproduc
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
