@@ -8,11 +8,14 @@ import { LoginserviceService } from 'src/app/services/loginservice.service';
 })
 export class NavBarComponent implements OnInit {
   public loggedIn=false;
-  constructor(private loginservice: LoginserviceService) { }
+  user:any;
 
+  constructor(private loginservice: LoginserviceService) { }
   ngOnInit(): void {
 
-    this.loggedIn=this.loginservice.isLoggedIn()
+    this.loggedIn=this.loginservice.isLoggedIn();
+    this.user= localStorage.getItem("user");
+console.log("this is dash" + this.user);
   }
   logoutUser(){
 

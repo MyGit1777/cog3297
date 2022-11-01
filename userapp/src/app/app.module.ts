@@ -12,7 +12,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { AuthModifier } from './services/auth.modifier';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule
   ],
   providers: [],
+  // providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthModifier, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
