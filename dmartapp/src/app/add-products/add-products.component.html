@@ -1,0 +1,34 @@
+<div class="container col-md-7 margin-t text-center">
+  <h1>Add or Update your product</h1>
+
+  <form #addcourseform="ngForm" (ngSubmit)="addProductSubmit()">
+    <!-- {{course | json}} -->
+    <div class="form-group container col-md-5">
+      <label for="productId">Product Id</label>
+      <input type="text" class="form-control" required [(ngModel)]="product.productId" name="productId">
+    </div>
+    <div class="form-group container col-md-5">
+      <label for="productName">Product name</label>
+      <input type="text" class="form-control" required [(ngModel)]="product.productName" name="productName" value="{{product.productName}}">
+    </div>
+    <div class="form-group container col-md-5">
+      <label for="productCategory">Product Category</label>
+      <input type="text" class="form-control" required [(ngModel)]="product.productCategory" name="productCategory">
+    </div>
+    <div class="form-group container col-md-5">
+      <label for="quantity">Quantity</label>
+      <input type="text" class="form-control" required [(ngModel)]="product.quantity" name="quantity">
+    </div>
+    <div class="form-group container col-md-5">
+      <label for="price">Price</label>
+      <input type="text" class="form-control" required [(ngModel)]="product.price" name="price">
+    </div>
+    <div class="form-group container col-md-5">
+      <label for="productDescription">Product description</label>
+      <input type="text" class="form-control" required [(ngModel)]="product.productDescription" name="productDescription">
+    </div>
+    
+    <button type="submit" class="btn btn-success margin-t">Submit</button>
+    <button type="submit" style="margin-left: 5px;" class="btn btn-secondary margin-t" (click)="gotolist()">Back</button>
+  </form>
+</div>

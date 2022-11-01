@@ -1,0 +1,29 @@
+<div class="container">
+  <h2> Products List</h2>
+  <p style="color: red;"> *Verify your items before proceeding</p>
+  <table class="table"> 
+  <thead class="thead-dark"> </thead>
+  <tr>
+  <th>Product Id</th>
+  <th> Product name</th>
+  </tr>
+  <tbody>  
+  <tr *ngIf="products.length==0">
+  <td colspan="5" style="text-align:center"><h2> You have not added any items yet</h2>
+  </td>
+  </tr>
+  <tr *ngFor="let product of products"> 
+    <td>  {{product.productId}}</td>
+    <td>  {{product.productName}}</td>
+  <td>
+    <!-- <button type="button" class="btn btn-primary" (click)="goToUpdateCourse(course.id)"> Edit &nbsp; </button> -->
+    <button type="button" class="btn btn-secondary" (click)="goToViewProduct(product.productId)"> View &nbsp; </button>
+
+    <button type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updateProduct(product.productId)">Update</button>
+    <button type="button" style="margin-left: 5px;" class="btn btn-danger" (click)="deleteProduct(product.productId)">Delete</button>
+  </td>
+  </tr>
+  </tbody>
+  </table>
+  <button type="button" class="btn btn-success" (click)="goToAddProduct()"> Add &nbsp; </button>
+  </div>

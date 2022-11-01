@@ -1,0 +1,29 @@
+<div class="container">
+  <h2>Product </h2>
+  <p>Verify your product</p>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Product ID</th>
+        <th scope="col">Product name</th>
+        <th scope="col">Product category</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Product description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>{{product.productId}}</th> 
+       <td>{{product.productName}}</td>
+       <td>{{product.productCategory}}</td>
+       <td>{{product.quantity}}</td>
+       <td>{{product.price}}</td>
+       <td>{{product.productDescription}}</td>
+
+      </tr>
+
+    </tbody>
+  </table>
+ <button type="button" class="btn btn-success" (click)="gotolist()">Back</button>
+</div>
