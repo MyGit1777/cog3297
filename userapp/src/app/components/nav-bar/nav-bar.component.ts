@@ -20,6 +20,8 @@ console.log("this is dash" + this.user);
   logoutUser(){
 
     this.loginservice.logoutUser();
-    location.reload();
+     window.location.href="/home";
+   
+   // location.reload();
   }
 }

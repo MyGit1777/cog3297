@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Book } from '../book';
 import { User } from '../user';
 
 
@@ -37,9 +38,12 @@ export class LoginserviceService {
 
     return this.http.get<User>("http://localhost:8088/user/" + 6);
   }
-
+  createBook(book: Book): Observable<any> {
+    console.log(book);
+    return this.http.post<any>("http://localhost:8088/user/create/book", book);
+  }
   createUser(user: User): Observable<any> {
-    user.role = 'GUEST';
+    // user.role = 'GUEST';
     console.log(user);
     return this.http.post<any>("http://localhost:8088/user/create", user);
   }

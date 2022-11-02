@@ -1,32 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Book } from 'src/app/book';
-import { LoginserviceService } from 'src/app/services/loginservice.service';
+import { LoginserviceService } from '../services/loginservice.service';
+import { User } from '../user';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  public loggedIn = false;
-  user: any;
-  book = new Book();
 
-  
+  user = new User();
 
   constructor(private actRoute: ActivatedRoute, private loginService: LoginserviceService) { }
 
   ngOnInit(): void {
-
-    this.loggedIn = this.loginService.isLoggedIn();
-    this.user = localStorage.getItem("user");
-    console.log("this is dash" + this.user);
   }
-  searchBook() {
+  addNewUser() {
 
-    this.loginService.createBook(this.book).subscribe
+    this.loginService.createUser(this.user).subscribe
       (
         data => {
           console.log("Registered successfully");
@@ -42,5 +35,4 @@ export class DashboardComponent implements OnInit {
       )
 
   }
-
 }

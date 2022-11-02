@@ -14,6 +14,9 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthModifier } from './services/auth.modifier';
+import { RegisterComponent } from './register/register.component';
+import { AddbookComponent } from './components/addbook/addbook.component';
+import { SearchbookComponent } from './searchbook/searchbook.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { AuthModifier } from './services/auth.modifier';
     NavBarComponent,
     HomeComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    RegisterComponent,
+    AddbookComponent,
+    SearchbookComponent
   ],
   imports: [
     BrowserModule,
