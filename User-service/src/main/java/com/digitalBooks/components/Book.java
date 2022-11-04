@@ -4,16 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 
 public class Book {
 
 	private int authorId;
-	
-	
+		
 	private String author;
-	
 	
 	private String bookTitle;
 	
@@ -28,11 +27,20 @@ public class Book {
 	private int price;
 	
 	private String status;
-	
+
 	private String chapter;
 	
+	private byte[] logo;
 	
-	private String subscribedBy; //userName
+	public byte[] getLogo() {
+		return logo;
+	}
+
+	public void setLogo(byte[] logo) {
+		this.logo = logo;
+	}
+
+	private String createdBy; //user
 	
 	private int subscriptionId;
 	
@@ -117,12 +125,12 @@ public class Book {
 		this.chapter = chapter;
 	}
 
-	public String getSubscribedBy() {
-		return subscribedBy;
+	public String getCreatedBy() {
+		return createdBy;
 	}
 
-	public void setSubscribedBy(String subscribedBy) {
-		this.subscribedBy = subscribedBy;
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public int getSubscriptionId() {
@@ -134,7 +142,7 @@ public class Book {
 	}
 
 	public Book(int authorId, String author, String bookTitle, String category, String publisher, boolean active,
-			String publishedDate, int price, String status, String chapter, String subscribedBy, int subscriptionId) {
+			String publishedDate, int price, String status, String chapter, String createdBy, int subscriptionId) {
 		super();
 		this.authorId = authorId;
 		this.author = author;
@@ -146,7 +154,7 @@ public class Book {
 		this.price = price;
 		this.status = status;
 		this.chapter = chapter;
-		this.subscribedBy = subscribedBy;
+		this.createdBy = createdBy;
 		this.subscriptionId = subscriptionId;
 	}
 

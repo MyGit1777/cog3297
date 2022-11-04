@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,11 +38,12 @@ import com.digitalBooks.service.UserService;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
 public class UserController {
 
 	@Autowired
 	private UserService userService;
-
+	private byte[] logo;
 	@Autowired
 	RestTemplate resTemplate;
 
@@ -61,7 +63,8 @@ public class UserController {
 	}
 
 	// Login for user
-	@GetMapping("/login")
+	
+	@PostMapping("/login")
 	public ResponseEntity<Object> getUserByNameAndPassword(@RequestBody User loginUser) {
 
 		Optional<User> user = userService.getUserByUserNameAndPassword(loginUser.getUserName(),
@@ -73,6 +76,11 @@ public class UserController {
 			return new org.springframework.http.ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
 		}
 
+	}
+	
+	@PostMapping("/upload/logo")
+	public void uploadImage(@RequestParam("logo") MultipartFile file) throws IOException {
+		this.logo = file.getBytes();
 	}
 
 	// For create book
@@ -86,7 +94,10 @@ public class UserController {
 		// ResponseEntity<String> response =
 		// resTemplate.exchange("http://Book-service/book/create", HttpMethod.POST,
 		// request, String.class);
+		book.setLogo(this.logo);
 		resTemplate.exchange("http://Book-service/book/create", HttpMethod.POST, new HttpEntity<>(book), String.class);
+		this.logo = null;
+
 		return HttpStatus.CREATED;
 
 	}
@@ -170,10 +181,19 @@ public class UserController {
 		return searchedbook;
 
 	}
+	
+	@GetMapping("/get/book/{authorId}")
+	public Book getBookById(@PathVariable Long authorId) {
+
+		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
+		Book searchedbook = resTemplate.getForObject("http://Book-service/book/" + authorId, Book.class);
+		return searchedbook;
+
+	}
 
 	// Will return all books based on search criteria, for guest/ we have to
 	// implement functionalities at UI
-	@GetMapping("/book/getAll")
+	@PostMapping("/book/getAll")
 	public List<Book> getAllBooks(@RequestBody Book book) {
 
 		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
