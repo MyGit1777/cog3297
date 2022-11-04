@@ -54,11 +54,11 @@ public class Book {
 	private String chapter;
 	
 	
-	@Column(name="SUBUSER")
-	private String subscribedBy; //userName
+	@Column(name="createdBy")
+	private String createdBy; //
 	
 
-	@Column(name = "LOGO", unique = false, nullable = false, length = 100000)
+	@Column(name = "LOGO", unique = false, nullable = true, length = 100000)
 	private byte[] logo;
 
 	@Column(name = "IMAGENAME")
@@ -74,7 +74,7 @@ public class Book {
 //	private List<SubscriberDetails> subscribers; 
 
 	public Book(Long authorId, String author, String bookTitle, String category, String publisher, boolean active,
-			String publishedDate, int price, String status, String chapter, String subscribedBy,
+			String publishedDate, int price, String status, String chapter, String createdBy,
 			List<SubscriberDetails> subscribers) {
 		super();
 		this.authorId = authorId;
@@ -87,7 +87,7 @@ public class Book {
 		this.price = price;
 		this.status = status;
 		this.chapter = chapter;
-		this.subscribedBy = subscribedBy;
+		this.createdBy = createdBy;
 		
 	}
 
@@ -164,19 +164,15 @@ public class Book {
 	}
 	
 	public String getChapter() {
-		return status;
+		return chapter;
 	}
 
 	public void setChapter(String chapter) {
 		this.chapter = chapter;
 	}
 
-	public String getSubscribedBy() {
-		return subscribedBy;
-	}
-
 	public Book(Long authorId, String author, String bookTitle, String category, String publisher, boolean active,
-			String publishedDate, int price, String status, String chapter, String subscribedBy) {
+			String publishedDate, int price, String status, String chapter, String createdBy) {
 		super();
 		this.authorId = authorId;
 		this.author = author;
@@ -188,7 +184,7 @@ public class Book {
 		this.price = price;
 		this.status = status;
 		this.chapter = chapter;
-		this.subscribedBy = subscribedBy;
+		this.createdBy = createdBy;
 	}
 
 	public Book() {

@@ -32,6 +32,9 @@ public class BookController {
 
 	@Autowired
 	private SubscriberDetailsRepository subsService;
+	
+	private byte[] logo;
+	
 
 	@GetMapping("/{authorId}")
 	public Book getUser(@PathVariable("authorId") Long authorId) {// replace with json
@@ -43,9 +46,12 @@ public class BookController {
 
 	@PostMapping("/create")
 	public ResponseEntity<String> createBook(@RequestBody Book book) {
+		//book.setLogo(this.logo);
 		System.out.println(book.getBookTitle() + "Created");
-		return ResponseEntity.status(HttpStatus.CREATED).body((bookService.createBook(book)));
-
+		 
+		ResponseEntity<String> res=	ResponseEntity.status(HttpStatus.CREATED).body((bookService.createBook(book)));
+		//this.logo = null;
+		return res;
 	}
 
 	@PostMapping("/upload/logo/{authorId}")
@@ -59,6 +65,12 @@ public class BookController {
 		// .logo((logo.getBytes())).build();
 		book.setLogo(logo.getBytes());
 		return ResponseEntity.status(HttpStatus.OK).body((bookService.createBook(book)));
+	}
+
+	
+	@PostMapping("/upload/logo")
+	public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+		this.logo = file.getBytes();
 	}
 
 	@GetMapping(value = "/get/logo/{authorId}", produces = MediaType.IMAGE_JPEG_VALUE)

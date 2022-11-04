@@ -22,8 +22,8 @@ public interface BooksRepository extends JpaRepository<Book, Long>{
 	@Query("SELECT b FROM Book b WHERE b.bookTitle = ?1 and b.author = ?2")
 	Book searchBookByTitleAndAuthor(String bookTitle, String author);
 	
-	@Query("SELECT b FROM Book b WHERE b.subscribedBy = subscribedBy")
-	List<Book> searchBooksBySubscription(String subscribedBy);
+	@Query("SELECT b FROM Book b WHERE b.createdBy = createdBy")
+	List<Book> searchBooksBySubscription(String createdBy);
 
 	Book getById(Long authorId);
 	
