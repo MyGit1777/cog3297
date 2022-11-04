@@ -5,10 +5,12 @@ export class Book {
 	bookTitle!:string
   category!:string
 	publisher!:string
-	// active!:boolean
+	active!:boolean
 	publishedDate!:string
 	price!: number
 	status!:string
   chapter!:string
-  subscribedBy!:string
+	logoByte!: string;
+	logo!: string;
+	createdBy!: string;
 }

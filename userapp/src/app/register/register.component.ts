@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
         data => {
           console.log("Registered successfully");
           alert("Registered successfully");
-          window.location.href = "/dashboard";
+          window.location.href = "/home";
         },
         error => {
 

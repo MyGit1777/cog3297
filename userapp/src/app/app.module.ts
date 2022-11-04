@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
@@ -17,6 +17,11 @@ import { AuthModifier } from './services/auth.modifier';
 import { RegisterComponent } from './register/register.component';
 import { AddbookComponent } from './components/addbook/addbook.component';
 import { SearchbookComponent } from './searchbook/searchbook.component';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import { ViewAllBooksComponent } from './view-all-books/view-all-books.component';
+import { ViewBookComponent } from './view-book/view-book.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +29,11 @@ import { SearchbookComponent } from './searchbook/searchbook.component';
     NavBarComponent,
     HomeComponent,
     LoginComponent,
-    DashboardComponent,
     RegisterComponent,
     AddbookComponent,
-    SearchbookComponent
+    SearchbookComponent,
+    ViewAllBooksComponent,
+    ViewBookComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,10 @@ import { SearchbookComponent } from './searchbook/searchbook.component';
     FormsModule,
     MatInputModule,
     MatFormFieldModule,
-    HttpClientModule
+    HttpClientModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   // providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthModifier, multi:true}],

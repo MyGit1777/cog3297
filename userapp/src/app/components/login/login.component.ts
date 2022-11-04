@@ -8,41 +8,41 @@ import { User } from 'src/app/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-user:User = new User();
+  user: User = new User();
 
 
-  credentials={
-username:'',
-password:''
+  credentials = {
+    username: '',
+    password: ''
 
   }
   constructor(private loginservice: LoginserviceService) { }
 
   ngOnInit(): void {
   }
-onSubmit(){
+  onSubmit() {
 
-  console.log(this.user);
-if(this.user.password != null && this.user.password!='' && this.user.userName!=null && this.user.userName != '' ){
-console.log("Ready to send credentials");
-this.loginservice.performLogin(this.user).subscribe(
-result=>{
-console.log("suceed")
-window.location.href="/dashboard";
-this.loginservice.loginUser(this.user);
-},
-error=>{
-  console.log("error occured")
+    console.log(this.user);
+    if (this.user.password != null && this.user.password != '' && this.user.userName != null && this.user.userName != '') {
+      console.log("Ready to send credentials");
+      this.loginservice.performLogin(this.user).subscribe(
+        result => {
+          console.log("suceed")
+          window.location.href = "/home";
+          this.loginservice.loginUser(this.user);
+        },
+        error => {
+          console.log("error occured")
 
 
-}
+        }
 
-)
-}else{
+      )
+    } else {
 
-  console.log("credentials are not okay");
+      console.log("credentials are not okay");
 
-}
+    }
 
-}
+  }
 }

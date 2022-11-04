@@ -47,6 +47,15 @@ export class LoginserviceService {
     console.log(user);
     return this.http.post<any>("http://localhost:8088/user/create", user);
   }
+  
+  getAllBooks(book: Book): Observable<any> {
+    return this.http.post<any>("http://localhost:8088/user/book/getAll", book);
+  }
+
+  getBookById(id: number): Observable<any> {
+   
+    return this.http.get<any>("http://localhost:8088/user/get/book/"+ id);
+  }
   loginUser(user: User){
 
     localStorage.setItem("user", user.userName);

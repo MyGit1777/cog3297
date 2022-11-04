@@ -1,9 +1,17 @@
 <mat-toolbar color="primary">  
 <span>   
-<a mat-icon-button routerLink="/"> Digital Book Home</a></span>
+<a mat-icon-button routerLink="/"> Digital Book <img style="width:30px" src="../assets/Home.jfif" alt="Home"></a></span>
 <span class="example-spacer"></span>
 <a *ngIf="!loggedIn"matt-icon-button routerLink="/login">Login &nbsp;</a>
-<a *ngIf="user" style="color: rgb(255, 0, 43);" matt-icon-button>Welcome &nbsp;{{user}}</a>
+
+<a *ngIf="user" style="color: rgb(255, 81, 0);" matt-icon-button><img style="width:30px; margin-top: 5px;" src="../assets/MyBooks.jfif" alt="myBooks" routerLink="/viewAllBooks">My books&nbsp;</a>
+
+
+<a *ngIf="user" style="color: rgb(255, 81, 0);" matt-icon-button><img style="width:30px; margin-top: 5px;" src="../assets/Profile.png" alt="logout">&nbsp;{{user}}</a>
+
+
 <a *ngIf="!loggedIn" matt-icon-button routerLink="/register">Register</a>
-<a *ngIf="loggedIn" (click)="logoutUser()" matt-icon-button style="margin-left: 10px;">  Logout</a>
+
+
+<a *ngIf="loggedIn" (click)="logoutUser()" matt-icon-button style="margin-left: 10px;" class="pointer"><img style="width:30px; margin-top: 5px;" src="../assets/Logout.png" alt="logout"> &nbsp;Logout</a>
 </mat-toolbar>

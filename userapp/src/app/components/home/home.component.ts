@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from 'src/app/book';
 import { LoginserviceService } from 'src/app/services/loginservice.service';
 
@@ -13,29 +13,23 @@ export class HomeComponent implements OnInit {
   public loggedIn = false;
   user: any;
   book = new Book();
-  constructor(private actRoute: ActivatedRoute, private loginservice: LoginserviceService) { }
+  constructor(private route: Router, private actRoute: ActivatedRoute, private loginservice: LoginserviceService) { }
   ngOnInit(): void {
 
     this.loggedIn = this.loginservice.isLoggedIn();
     this.user = localStorage.getItem("user");
-    console.log("this is dash" + this.user);
+    console.log("this is home user " + this.user);
+   
   }
-  searchBook() {
+  searchBook(book: Book) {
+  // let  bookTitle= book.bookTitle;
+  // let  author= book.author;
+  // let  publisher= book.publisher;
+    // this.route.navigate(['viewAllBooks', bookTitle, author, publisher]);
+console.log("this is book from arg" + book.bookTitle);
+console.log("this is book from this.book" + this.book.bookTitle);
 
-    this.loginservice.createBook(this.book).subscribe
-      (
-        data => {
-          console.log("Registered successfully");
-          alert("Registered successfully");
-          window.location.href = "/dashboard";
-        },
-        error => {
-
-          console.log("Error while creating user");
-        }
-
-      )
-
+    this.route.navigateByUrl('/viewAllBooks', { state: this.book });
   }
 
   resetForm() {
