@@ -1,25 +1,32 @@
 <div class="container">
-  <h2> Books List</h2>
-  <p style="color: red;"> All books based on search</p>
+  <h2> Available Books</h2>
+  <!-- <p style="color: red;"> All books based on search</p> -->
   <table class="table"> 
   <thead class="thead-dark"> </thead>
   <tr>
   <th>Book Id</th>
-  <th> Book name</th>
+  <th>Book name</th>
+  <th>Author</th>
+  <th>Publisher</th>
   </tr>
   <tbody>  
   <tr *ngIf="allBooks.length==0">
-  <td colspan="5" style="text-align:center"><h2> No books yet</h2>
+  <td colspan="5" style="text-align:center"><h2> No books yet!!</h2>
   </td>
   </tr>
   <tr *ngFor="let book of allBooks"> 
     <td>  {{book.authorId}}</td>
     <td>  {{book.bookTitle}}</td>
+    <td>  {{book.author}}</td>
+    <td>  {{book.publisher}}</td>
   <td>
-    <button type="button" class="btn btn-secondary" (click)="goToViewBook(book.authorId)"> Read &nbsp; </button>
+    <button *ngIf="loggedIn && (userRole=='AUTHOR' || userRole=='READER')" type="button" class="btn btn-secondary" (click)="goToViewBook(book.authorId)"> Read &nbsp; </button>
 
-    <button type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updateBook(book.authorId)">Subscribe</button>
-    <button type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updateBook(book.authorId)">Update</button>
+    <button *ngIf="userRole=='READER'" type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="subscribeBook(book.authorId)">Subscribe</button>
+
+    <button *ngIf="userRole=='READER'" type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="unSubscribeBook(book.authorId)">Unsubscribe</button>
+
+    <button *ngIf="loggedIn && userRole=='AUTHOR'" type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updateBook(book.authorId)">Update</button>
   </td>
   </tr>
   </tbody>

@@ -22,6 +22,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { ViewAllBooksComponent } from './view-all-books/view-all-books.component';
 import { ViewBookComponent } from './view-book/view-book.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { ViewBookComponent } from './view-book/view-book.component';
     HttpClientModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   // providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthModifier, multi:true}],

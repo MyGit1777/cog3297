@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
       console.log("Ready to send credentials");
       this.loginservice.performLogin(this.user).subscribe(
         result => {
-          console.log("suceed")
+          console.log("suceed");
+          this.user = result;
           window.location.href = "/home";
           this.loginservice.loginUser(this.user);
         },

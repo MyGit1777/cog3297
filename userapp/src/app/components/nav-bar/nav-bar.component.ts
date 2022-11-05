@@ -9,13 +9,14 @@ import { LoginserviceService } from 'src/app/services/loginservice.service';
 export class NavBarComponent implements OnInit {
   public loggedIn=false;
   user:any;
-
+  public userRole:any;
   constructor(private loginservice: LoginserviceService) { }
   ngOnInit(): void {
 
     this.loggedIn=this.loginservice.isLoggedIn();
     this.user= localStorage.getItem("user");
-console.log("this is dash" + this.user);
+    this.userRole= localStorage.getItem("userRole");
+  console.log("Logged in user is " + this.user);
   }
   logoutUser(){
 

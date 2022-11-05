@@ -23,8 +23,8 @@ export class LoginserviceService {
   performLogin(user: User): Observable<any> {
 
 
-    user.role = 'GUEST';
-    console.log(user);
+    //user.role = 'GUEST';
+    console.log("perfor login" +user);
     // return this.http.post<any>("http://localhost:8088/user/login",user);
     //return this.http.get<User>("http://localhost:8088/user/"+6);
 
@@ -56,9 +56,24 @@ export class LoginserviceService {
    
     return this.http.get<any>("http://localhost:8088/user/get/book/"+ id);
   }
+
+  subscribeBook(id: number, user: string): Observable<any> {
+   
+    return this.http.get<any>("http://localhost:8088/user/subscribe/book/"+ id + "/" + user);
+  }
+
+  unSubscribeBook(id: number, user: string): Observable<any> {
+   
+    return this.http.delete<any>("http://localhost:8088/user/unsubscribe/book/"+ id + "/" + user);
+  }
+  getAllSubscribedBooks(user: string): Observable<any> {
+   
+    return this.http.get<any>("http://localhost:8088/user/searchBySubsName/"+ user);
+  }
   loginUser(user: User){
 
     localStorage.setItem("user", user.userName);
+    localStorage.setItem("userRole", user.role);
     return true;
   }
 
