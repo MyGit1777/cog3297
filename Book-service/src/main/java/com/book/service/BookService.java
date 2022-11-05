@@ -20,5 +20,7 @@ public interface BookService {
 	public String updateBook(Book book);
 
 	public Long subscribeBook(Long authorId, String subscribedBy);
+	public Long unSubscribeBook(Long authorId, String subscribedBy);
+
 
 }

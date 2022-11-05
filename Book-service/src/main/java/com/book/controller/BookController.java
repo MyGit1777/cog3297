@@ -8,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -96,6 +97,14 @@ public class BookController {
 		return bookService.subscribeBook(authorId, subscribedBy);
 
 	}
+	
+	// unsubscribe a book
+		@DeleteMapping("/unsubscribe/{authorId}/{subscribedBy}")
+		public Long unSubscribeBook(@PathVariable Long authorId, @PathVariable String subscribedBy) {
+
+			return bookService.unSubscribeBook(authorId, subscribedBy);
+
+		}
 
 	// Returns book based on book title and author name
 	@GetMapping("/search")

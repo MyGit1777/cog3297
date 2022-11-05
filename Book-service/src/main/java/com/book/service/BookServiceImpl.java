@@ -41,7 +41,15 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public List<Book> getAllBooksSubscribedByUser(String subscribedBy) {
-		List<Book> subscribedBooks = booksRepo.searchBooksBySubscription(subscribedBy);
+		List<SubscriberDetails> allAuthours = subsRepo.findBysubscribedBy(subscribedBy);
+		allAuthours.stream().distinct().collect(Collectors.toList());
+		List<Book> subscribedBooks = new ArrayList();
+
+		// Get each book by authur
+		for (SubscriberDetails sub : allAuthours) {
+			subscribedBooks.add(booksRepo.getById(sub.getAuthorId()));
+
+		}
 		return subscribedBooks;
 	}
 
@@ -101,5 +109,18 @@ public class BookServiceImpl implements BookService {
 		return subList.stream()
 				.filter(s -> s.getSubscribedBy().equalsIgnoreCase(subscribedBy) && s.getAuthorId().equals(authorId))
 				.findAny().get().getSubId();
+	}
+	@Override
+	public Long unSubscribeBook(Long authorId, String subscribedBy) {
+
+		
+		SubscriberDetails subDetails = new SubscriberDetails();
+//		subDetails.setSubscribedBy(subscribedBy);
+//		subDetails.setAuthorId(authorId);
+			
+		subDetails = subsRepo.findAll().stream().filter(sub-> sub.getAuthorId()==authorId && sub.getSubscribedBy().equalsIgnoreCase(subscribedBy)).findAny().get();
+		
+		subsRepo.deleteById(subDetails.getSubId());;
+		return 0L;
 	}
 }

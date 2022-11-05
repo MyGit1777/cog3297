@@ -8,12 +8,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
-@Table(name = "subscriberDetails")
+@Table(name = "subscriberDetails", uniqueConstraints = { @UniqueConstraint(columnNames = { "subscribedBy", "authorId" }) })
 public class SubscriberDetails {
 	
 	@Id
