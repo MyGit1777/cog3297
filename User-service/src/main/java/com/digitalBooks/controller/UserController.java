@@ -19,6 +19,7 @@ import org.springframework.http.ResponseEntity.BodyBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -169,6 +170,16 @@ public class UserController {
 		return Long.valueOf(id);
 
 	}
+	
+	@DeleteMapping("/unsubscribe/book/{authorId}/{subscribedBy}")
+	public void unSubscribeBook(@PathVariable Long authorId, @PathVariable String subscribedBy) {
+
+		// HttpEntity<Book> request = new HttpEntity<>(new Book(book));
+
+		
+		 resTemplate.delete("http://Book-service/book/unsubscribe/" + authorId + "/" + subscribedBy);
+
+	}
 
 	// For get book, will return results based on title and author
 	@GetMapping("/search/book")
@@ -220,7 +231,7 @@ public class UserController {
 
 //				BooksList  response = resTemplate.getForObject("http://Book-service/book/subsciberSearch"+"/subscribedBy", BooksList.class);
 		ResponseEntity<Book[]> response = resTemplate
-				.getForEntity("http://Book-service/book/subsciberSearch" + "/subscribedBy", Book[].class);
+				.getForEntity("http://Book-service/book/subsciberSearch/" + subscribedBy, Book[].class);
 
 		List<Book> searchedBooks = Arrays.asList(response.getBody());
 		return searchedBooks;
