@@ -10,7 +10,7 @@ import com.book.components.SubscriberDetails;
 
 public interface SubscriberDetailsRepository extends JpaRepository<SubscriberDetails, Long> {
 	  List<SubscriberDetails> findBySubId(Long subId);
-	  
+	  List<SubscriberDetails> findBysubscribedBy(String subscribedBy);
 //	  @Query("INSERT INTO SubscriberDetails (subscribedBy, authorId) VALUES (?1, ?2)")
 //	  void insertSubscriberDetails(Long authorId, String subscribedBy);
 	  
