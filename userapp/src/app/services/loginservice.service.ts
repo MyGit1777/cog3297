@@ -80,6 +80,8 @@ export class LoginserviceService {
   logoutUser(){
 
     localStorage.removeItem("user");
+    localStorage.removeItem("userRole");
+
   }
   isLoggedIn(){
 let user = localStorage.getItem("user");

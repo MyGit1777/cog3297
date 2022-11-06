@@ -24,6 +24,7 @@ import { ViewAllBooksComponent } from './view-all-books/view-all-books.component
 import { ViewBookComponent } from './view-book/view-book.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatIconModule} from '@angular/material/icon';
     AddbookComponent,
     SearchbookComponent,
     ViewAllBooksComponent,
-    ViewBookComponent
+    ViewBookComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

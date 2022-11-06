@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'userapp';
-
+  title = 'DigitalBooks';
+backIamge: string ="/assets/LoginLogo.png"
   
 }

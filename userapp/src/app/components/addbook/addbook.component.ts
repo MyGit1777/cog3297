@@ -57,9 +57,11 @@ export class AddbookComponent implements OnInit {
               this.router.navigate(['home']);
             }
           );
+          alert("Data added successfully");
           console.log('Image uploaded successfully');
         } else {
           console.log('Image not uploaded successfully');
+          alert("Book addition failed");
         }
       }
       );
