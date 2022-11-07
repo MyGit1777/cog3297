@@ -21,7 +21,8 @@ pathMatch:'full'
 {
   path:'home',
   component: HomeComponent,
-  pathMatch:'full'
+  pathMatch:'full',
+  
   
   },
 
@@ -42,14 +43,14 @@ pathMatch:'full'
       path:'searchBook',
       component: SearchbookComponent,
       pathMatch:'full'
-      
+
       },
 
       {
         path:'viewBook/:id',
         component: ViewBookComponent,
-        pathMatch:'full'
-        
+        pathMatch:'full',
+        canActivate: [AuthGuard]
         },
 
         {
@@ -69,7 +70,6 @@ pathMatch:'full'
       path:'viewAllBooks',
       component: ViewAllBooksComponent,
       pathMatch:'full',
-      
       },
 
     
@@ -77,12 +77,10 @@ pathMatch:'full'
       path:'addbook',
       component: AddbookComponent,
       pathMatch:'full',
-     
+      canActivate: [AuthGuard]
       
       }
   
-
-
 ];
 
 @NgModule({
