@@ -15,9 +15,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class UserWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -63,7 +64,7 @@ public class UserWebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
-
+		 
 //				.antMatchers(HttpMethod.POST).hasAnyRole("AUTHOR", "GUEST")
 //				.antMatchers(HttpMethod.PUT).hasAnyRole("AUTHOR")
 				.antMatchers(HttpMethod.GET, "/user/book/getAll").hasAnyRole("GUEST", "READER", "AUTHOR")
