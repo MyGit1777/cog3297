@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -55,6 +56,13 @@ public class UserController {
 		return new org.springframework.http.ResponseEntity<>(user, HttpStatus.OK);
 
 	}
+	
+	@GetMapping("/test")
+	public String getUserApp() {
+
+		return "This is a test for app";
+
+	}
 
 	@PostMapping("/create")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -96,7 +104,7 @@ public class UserController {
 		// resTemplate.exchange("http://Book-service/book/create", HttpMethod.POST,
 		// request, String.class);
 		book.setLogo(this.logo);
-		resTemplate.exchange("http://Book-service/book/create", HttpMethod.POST, new HttpEntity<>(book), String.class);
+		resTemplate.exchange("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/create", HttpMethod.POST, new HttpEntity<>(book), String.class);
 		this.logo = null;
 
 		return HttpStatus.CREATED;
@@ -109,7 +117,7 @@ public class UserController {
 
 		HttpEntity<Book> request = new HttpEntity<>(new Book(book));
 
-		resTemplate.exchange("http://Book-service/book/update", HttpMethod.PUT, new HttpEntity<>(book), String.class);
+		resTemplate.exchange("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/update", HttpMethod.PUT, new HttpEntity<>(book), String.class);
 		return HttpStatus.OK;
 
 	}
@@ -142,7 +150,7 @@ public class UserController {
 //		final ParameterizedTypeReference<> typeReference = new ParameterizedTypeReference<>() {
 //		};
 
-		ResponseEntity<String> res = resTemplate.exchange("http://Book-service/book/upload/logo/" + authorId,
+		ResponseEntity<String> res = resTemplate.exchange("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/upload/logo/" + authorId,
 				HttpMethod.POST, new HttpEntity<>(requestMap, headers), String.class);
 
 		return HttpStatus.OK;
@@ -154,7 +162,7 @@ public class UserController {
 
 		// HttpEntity<Book> request = new HttpEntity<>(new Book(book));
 
-		byte[] responseLogo = resTemplate.getForObject("http://Book-service/book/get/logo/" + authorId, byte[].class);
+		byte[] responseLogo = resTemplate.getForObject("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/get/logo/" + authorId, byte[].class);
 		return responseLogo;
 
 	}
@@ -165,7 +173,7 @@ public class UserController {
 
 		// HttpEntity<Book> request = new HttpEntity<>(new Book(book));
 
-		String id = resTemplate.getForObject("http://Book-service/book/subscribe/" + authorId + "/" + subscribedBy,
+		String id = resTemplate.getForObject("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/subscribe/" + authorId + "/" + subscribedBy,
 				String.class);
 		return Long.valueOf(id);
 
@@ -177,7 +185,7 @@ public class UserController {
 		// HttpEntity<Book> request = new HttpEntity<>(new Book(book));
 
 		
-		 resTemplate.delete("http://Book-service/book/unsubscribe/" + authorId + "/" + subscribedBy);
+		 resTemplate.delete("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/unsubscribe/" + authorId + "/" + subscribedBy);
 
 	}
 
@@ -187,7 +195,7 @@ public class UserController {
 
 		// HttpEntity<Book> request = new HttpEntity<>(new Book(book));
 		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
-		ResponseEntity<Book> searchedbook = resTemplate.exchange("http://Book-service/book/search", HttpMethod.GET,
+		ResponseEntity<Book> searchedbook = resTemplate.exchange("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/search", HttpMethod.GET,
 				new HttpEntity<>(book), Book.class);
 		return searchedbook;
 
@@ -197,7 +205,7 @@ public class UserController {
 	public Book getBookById(@PathVariable Long authorId) {
 
 		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
-		Book searchedbook = resTemplate.getForObject("http://Book-service/book/" + authorId, Book.class);
+		Book searchedbook = resTemplate.getForObject("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/" + authorId, Book.class);
 		return searchedbook;
 
 	}
@@ -209,7 +217,7 @@ public class UserController {
 
 		resTemplate.setRequestFactory(new HttpComponentsClientHttpRequestWithBodyFactory());
 
-		ResponseEntity<Book[]> response = resTemplate.getForEntity("http://Book-service/book/getAllBooks",
+		ResponseEntity<Book[]> response = resTemplate.getForEntity("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/getAllBooks",
 				Book[].class);
 
 		List<Book> returnedBooks = Arrays.asList(response.getBody());
@@ -222,20 +230,18 @@ public class UserController {
 
 	}
 
-	// Get all subscribed books by reader WIP
+	// Get all subscribed books by reader
 	@GetMapping("/searchBySubsName/{subscribedBy}")
 	public List<Book> getUser(@PathVariable String subscribedBy) {
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("subsciberId", "1");
-		params.put("userName", "aviansh");
 
 //				BooksList  response = resTemplate.getForObject("http://Book-service/book/subsciberSearch"+"/subscribedBy", BooksList.class);
 		ResponseEntity<Book[]> response = resTemplate
-				.getForEntity("http://Book-service/book/subsciberSearch/" + subscribedBy, Book[].class);
+				.getForEntity("http://ctsbookservice6.ap-northeast-1.elasticbeanstalk.com/book/subsciberSearch/" + subscribedBy, Book[].class);
 
 		List<Book> searchedBooks = Arrays.asList(response.getBody());
-		return searchedBooks;
-
+		//Return only active books
+		List<Book> activeBooks = searchedBooks.stream().filter(book-> book.getActive()).collect(Collectors.toList());
+		 return activeBooks;
 	}
 
 }
