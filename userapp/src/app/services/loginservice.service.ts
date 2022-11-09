@@ -9,8 +9,8 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class LoginserviceService {
-  getUrl = "http://localhost:8088/user/";
-  url = "http://localhost:8088/user/login";
+  getUrl = "http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/";
+  url = "http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/login";
 
   constructor(private http: HttpClient) { }
 
@@ -36,39 +36,39 @@ export class LoginserviceService {
     user.role = 'GUEST';
     console.log(user);
 
-    return this.http.get<User>("http://localhost:8088/user/" + 6);
+    return this.http.get<User>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/" + 6);
   }
   createBook(book: Book): Observable<any> {
     console.log(book);
-    return this.http.post<any>("http://localhost:8088/user/create/book", book);
+    return this.http.post<any>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/create/book", book);
   }
   createUser(user: User): Observable<any> {
     // user.role = 'GUEST';
     console.log(user);
-    return this.http.post<any>("http://localhost:8088/user/create", user);
+    return this.http.post<any>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/create", user);
   }
   
   getAllBooks(book: Book): Observable<any> {
-    return this.http.post<any>("http://localhost:8088/user/book/getAll", book);
+    return this.http.post<any>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/book/getAll", book);
   }
 
   getBookById(id: number): Observable<any> {
    
-    return this.http.get<any>("http://localhost:8088/user/get/book/"+ id);
+    return this.http.get<any>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/get/book/"+ id);
   }
 
   subscribeBook(id: number, user: string): Observable<any> {
    
-    return this.http.get<any>("http://localhost:8088/user/subscribe/book/"+ id + "/" + user);
+    return this.http.get<any>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/subscribe/book/"+ id + "/" + user);
   }
 
   unSubscribeBook(id: number, user: string): Observable<any> {
    
-    return this.http.delete<any>("http://localhost:8088/user/unsubscribe/book/"+ id + "/" + user);
+    return this.http.delete<any>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/unsubscribe/book/"+ id + "/" + user);
   }
   getAllSubscribedBooks(user: string): Observable<any> {
    
-    return this.http.get<any>("http://localhost:8088/user/searchBySubsName/"+ user);
+    return this.http.get<any>("http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/searchBySubsName/"+ user);
   }
   loginUser(user: User){
 

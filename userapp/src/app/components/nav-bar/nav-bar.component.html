@@ -1,9 +1,11 @@
 <mat-toolbar style="margin-bottom: -25px;" color="primary">  
 <span>   
-<a mat-icon-button routerLink="/"> Digital Book <img style="width:30px" src="../assets/Home.jfif" alt="Home"></a>
+<a mat-icon-button routerLink="/"> Digital Book <img style="width:30px" src="../assets/Home.jfif" alt="Home">
+  
+</a>
 
 </span>
-
+  
 <span class="example-spacer"></span>
   
   <a *ngIf="loggedIn && userRole=='AUTHOR'" routerLink="/addbook" style="margin-right: 5px; text-decoration: none;"> <button *ngIf="loggedIn && userRole=='AUTHOR'" routerLink="/addbook" style="margin-right: 5px;" mat-mini-fab color="warn" aria-label="Example icon button with a plus one icon" >

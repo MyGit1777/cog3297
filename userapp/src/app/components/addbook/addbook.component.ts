@@ -41,15 +41,15 @@ export class AddbookComponent implements OnInit {
 
   saveBook() {
    // if(this.selectedFile!=null){
-    this.book= new Book();
+    //this.book= new Book();
     this.book.createdBy =this.user;
 
 
     const uploadData = new FormData();
     uploadData.append('logo', this.selectedFile, this.selectedFile.name);
     this.selectedFile.imageName = this.selectedFile.name;
-
-    this.httpClient.post('http://localhost:8088/user/upload/logo', uploadData, { observe: 'response' })
+console.log("Checking book content"+this.book);
+    this.httpClient.post('http://ctsuserservice6.ap-northeast-1.elasticbeanstalk.com/user/upload/logo', uploadData, { observe: 'response' })
       .subscribe((response) => {
         if (response.status === 200) {
           this.loginService.createBook(this.book).subscribe(

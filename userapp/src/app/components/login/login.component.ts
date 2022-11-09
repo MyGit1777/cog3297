@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log("error occured")
-
+          alert("Something went wrong, please check credentials once");
 
         }
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     } else {
 
       console.log("credentials are not okay");
-
+      alert("credentials are not okay");
     }
 
   }

@@ -43,3 +43,21 @@ img:hover {
 height: 100vh;
 width: 100vw
 }
+
+#blink {
+  font-size: 0px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: #c93f1c;
+  transition: 0.4s;
+}
+.blink {
+    animation: blinker 1.5s linear infinite;
+    color: rgb(255, 0, 0);
+    font-family: sans-serif;
+}
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
