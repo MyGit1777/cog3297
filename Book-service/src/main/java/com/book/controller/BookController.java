@@ -36,7 +36,12 @@ public class BookController {
 	
 	private byte[] logo;
 	
+	@GetMapping("/test")
+	public String getBookService() {
 
+		return "This is a test for app";
+
+	}
 	@GetMapping("/{authorId}")
 	public Book getUser(@PathVariable("authorId") Long authorId) {// replace with json
 
