@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6" style="background-color:yellow;">
+      <br>
+      <label>
+        <h6>Name:</h6>
+      </label>
+      <input type="text" [(ngModel)]="name" class="form-control">
+
+      <br>
+      <button (click)="onAddCustomer(name)" class="btn btn-primary btn-sm">Submit</button>
+      <br>
+      <br>
+    </div>
+    <div class="col-sm-6">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customers">
+            <td>{{ customer}}</td>
+
+          </tr>
+          <!-- <tr>
+                      <td>{{ name}}</td>
+                     
+                  </tr> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
