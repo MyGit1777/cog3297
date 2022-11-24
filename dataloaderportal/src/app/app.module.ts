@@ -27,6 +27,7 @@ import { ProcessComponent } from './components/process/process.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthModifier } from './services/auth.modifier';
 import { LoginServiceService } from './services/login-service.service';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { LoginServiceService } from './services/login-service.service';
     ViewUpdateComponent,
     ProcessComponent,
     RegisterComponent,
+    AboutComponent,
      ],
     providers: [LoginServiceService, AuthModifier, [{provide:HTTP_INTERCEPTORS, useClass:AuthModifier, multi:true}]],
      bootstrap: [AppComponent],
