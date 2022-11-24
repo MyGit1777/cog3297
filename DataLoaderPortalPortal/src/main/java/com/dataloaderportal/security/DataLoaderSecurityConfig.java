@@ -18,7 +18,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 //@Configuration
-@EnableWebSecurity(debug=true)
+@EnableWebSecurity()
 public class DataLoaderSecurityConfig  extends WebSecurityConfigurerAdapter{
 
 	/*
@@ -84,8 +84,11 @@ public class DataLoaderSecurityConfig  extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.csrf().disable()
-				.authorizeRequests().antMatchers("/dataloader/authenticate").permitAll().
-						anyRequest().authenticated().and().
+		.cors().disable()
+				.authorizeRequests()
+				.antMatchers("/dataloader/authenticate").permitAll()
+				.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
+						.anyRequest().authenticated().and().
 						exceptionHandling().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
