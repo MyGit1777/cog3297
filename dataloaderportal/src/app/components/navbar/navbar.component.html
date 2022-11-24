@@ -3,8 +3,16 @@
   <a mat-icon-button routerLink="/"> Data loader portal
     
   </a>
-  
+  <img class="img-fluid" style="width:70px; margin-left: 80px;" src="/assets/uploadLogo.png" alt="inmg">
   </span>
-    
-  
+  <a style="text-decoration: none; margin-left: 1020px;" matt-icon-button routerLink="/home">Home &nbsp;</a>
+  <a *ngIf="!loggedIn" style="text-decoration: none;" matt-icon-button routerLink="/login">Login &nbsp;</a>
+
+  <a *ngIf="loggedIn" style="text-decoration: none;" class="pointer" matt-icon-button (click)="logoutUser()">Logout &nbsp;</a>
+
+  <a style="text-decoration: none;" matt-icon-button routerLink="/login">About &nbsp;</a>
+
+
+
+<a *ngIf="!loggedIn" style="text-decoration: none;" matt-icon-button routerLink="/register">Register</a>
   </mat-toolbar>

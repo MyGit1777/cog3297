@@ -20,6 +20,13 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import { HomeComponent } from './components/home/home.component';
+import { InductPatientComponent } from './components/induct-patient/induct-patient.component';
+import { ViewUpdateComponent } from './components/view-update/view-update.component';
+import { ProcessComponent } from './components/process/process.component';
+import { RegisterComponent } from './components/register/register.component';
+import { AuthModifier } from './services/auth.modifier';
+import { LoginServiceService } from './services/login-service.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,13 @@ import {MatIconModule} from '@angular/material/icon';
     AppComponent,
     NavbarComponent,
     LoginComponent,
+    HomeComponent,
+    InductPatientComponent,
+    ViewUpdateComponent,
+    ProcessComponent,
+    RegisterComponent,
      ],
+    providers: [LoginServiceService, AuthModifier, [{provide:HTTP_INTERCEPTORS, useClass:AuthModifier, multi:true}]],
      bootstrap: [AppComponent],
   imports: [
     BrowserModule,

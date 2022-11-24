@@ -9,13 +9,13 @@
         <h1 class="text-center" style="color:black ;"> Login here</h1>
 
         <form (ngSubmit)="onSubmit()">
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>User name</mat-label>
-            <input name="userName" required type="text" matInput />
+            <input [(ngModel)]="credentials.userName" name="userName" required type="text" matInput />
           </mat-form-field><br>
-          <mat-form-field appearance="fill">
+          <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input name="password" required type="password" matInput />
+            <input [(ngModel)]="credentials.password" name="password" required type="password" matInput />
           </mat-form-field>
           <div class="container text-center">
 
