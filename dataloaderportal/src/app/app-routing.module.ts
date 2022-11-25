@@ -5,7 +5,10 @@ import { ChangepasswordComponent } from './components/changepassword/changepassw
 import { ForgotpasswordfirstComponent } from './components/forgotpasswordfirst/forgotpasswordfirst.component';
 import { ForgotpasswordsecondComponent } from './components/forgotpasswordsecond/forgotpasswordsecond.component';
 import { HomeComponent } from './components/home/home.component';
+import { InductPatientComponent } from './components/induct-patient/induct-patient.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProcessComponent } from './components/process/process.component';
+import { ViewUpdateComponent } from './components/view-update/view-update.component';
 import { AuthgurdGuard } from './services/authgurd.guard';
 
 const routes: Routes = [
@@ -25,7 +28,21 @@ const routes: Routes = [
     component: AboutComponent,
     pathMatch: 'full',
   },
-
+  {
+    path: 'induct',
+    component: InductPatientComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'viewAndUpdate',
+    component: ViewUpdateComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'process',
+    component: ProcessComponent,
+    pathMatch: 'full',
+  },
   {
     path: 'changePassword',
     component: ChangepasswordComponent,

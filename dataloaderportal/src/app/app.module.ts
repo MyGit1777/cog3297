@@ -31,6 +31,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ForgotpasswordfirstComponent } from './components/forgotpasswordfirst/forgotpasswordfirst.component';
 import { ForgotpasswordsecondComponent } from './components/forgotpasswordsecond/forgotpasswordsecond.component';
 import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { ChangepasswordComponent } from './components/changepassword/changepassw
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatTabsModule
   ]})
 export class AppModule { }

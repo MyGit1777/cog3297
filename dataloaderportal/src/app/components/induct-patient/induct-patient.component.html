@@ -1,1 +1,29 @@
-<p>induct-patient works!</p>
+<div class="bootstrap-wrapper big-banner full-height">
+  <div class="container col-md-7 margin-t text-center full-height">
+
+
+    <div style="margin-top: 25px;" class="container col-md-7 margin-t text-center">
+      <h1>Add data</h1>
+
+
+      <form ngNativeValidate #inductPatientForm="ngForm" (ngSubmit)="inductPatient()">
+        <!-- {{course | json}} -->
+        <div class="form-group  container col-md-5">
+
+          <!-- <label for="logo">File &nbsp;</label> -->
+          <input type="file" (change)="onFileChanged($event)">
+  
+          <img [src]="" height="100" width="100" >
+        </div>
+    
+        <button type="submit" class="btn btn-success margin-t">Submit</button>
+        <button type="submit" style="margin-left: 5px;" class="btn btn-secondary margin-t"
+          (click)="gotoHome()">Back</button>
+      </form>
+    </div>
+  </div>
+  <footer style="color:black; background-color: rgb(63,81,181);" class="footer fixed-bottom">
+
+    <p style="text-align:center; margin-top: 10px;">@Copyright 2022-23. All rights reserved. </p>
+  
+  </footer>

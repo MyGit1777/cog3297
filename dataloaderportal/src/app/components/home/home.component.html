@@ -7,8 +7,27 @@
           <img class="img-fluid" style="width:100px" src="/assets/uploaddata1.png" alt="inmg">
         </div>
         <h1 class="text-center" style="color:black ;"> Welcome to home</h1>
+        <mat-tab-group style="margin-left:100px ;">
+          <mat-tab label="Induct patient">
 
-       
+            <div class="example-small-box mat-elevation-z4">
+              <button routerLink="/induct" type="submit" class="btn btn-primary">Induct</button>
+            </div>
+          </mat-tab>
+          <mat-tab label="Update patient details">
+            <div class="example-small-box mat-elevation-z4">
+              <button routerLink="/viewAndUpdate" type="submit" class="btn btn-primary">Update</button>
+            </div>
+          </mat-tab>
+          <mat-tab label="Process data">
+
+            <div class="example-small-box mat-elevation-z4">
+              <button routerLink="/process" type="submit" class="btn btn-primary">Process</button>
+
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+
       </div>
     </div>
   </div>
