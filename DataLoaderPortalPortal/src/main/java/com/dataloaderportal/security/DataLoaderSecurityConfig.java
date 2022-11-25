@@ -87,9 +87,13 @@ public class DataLoaderSecurityConfig  extends WebSecurityConfigurerAdapter{
 		.cors().disable()
 				.authorizeRequests()
 				.antMatchers("/dataloader/authenticate").permitAll()
+				.antMatchers("/dataloader/forgotPassword").permitAll()
+				.antMatchers("/dataloader/verifyOTP").permitAll()
+				.antMatchers("/dataloader/createUser").permitAll()
+				.antMatchers("/dataloader/updateUser").permitAll()
 				.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-						.anyRequest().authenticated().and().
-						exceptionHandling().and().sessionManagement()
+				.anyRequest().authenticated().and().
+				exceptionHandling().and().sessionManagement()
 				.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
