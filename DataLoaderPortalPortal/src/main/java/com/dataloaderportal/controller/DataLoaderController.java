@@ -70,6 +70,13 @@ public class DataLoaderController {
 		return ResponseEntity.status(HttpStatus.CREATED).body((userService.createUser(user)));
 
 	}
+	
+	@PostMapping("/updateUser")
+	public ResponseEntity<User> updateUser(@RequestBody User user) {
+		System.out.println(user.getUserName());
+		return ResponseEntity.status(HttpStatus.CREATED).body((userService.updateUser(user)));
+
+	}
 
 	// Login for user
 	@PostMapping("/login")
@@ -86,7 +93,7 @@ public class DataLoaderController {
 
 	// Forgot password
 	@PostMapping("/forgotPassword")
-	public boolean sendOTPOnMail(@RequestParam("email") String email, HttpSession session) {
+	public boolean sendOTPOnMail(@RequestParam("email") String email) {
 
 		User user = userRepo.findByUserName(email);
 
@@ -95,19 +102,21 @@ public class DataLoaderController {
 
 			String subject = "OTP to change your password";
 			String message = "Please find below OTP: " + otp;
-			session.setAttribute("otp", otp);
+			user.setOtp(otp);
+			userService.createUser(user);
+			
 			return emailService.sendOTPMail(subject, message, email);
 		}
 		return false;
 	}
 
 	@PostMapping("/verifyOTP")
-	public boolean verifyOTP(@RequestParam("otp") Integer otp, HttpSession session) {
+	public boolean verifyOTP(@RequestParam("otp") Integer otp, @RequestParam("email") String email) {
 		boolean flag = false;
-		if (otp == (int) session.getAttribute("otp")) {
+		User user = userRepo.findByUserName(email);
+		if (user!= null && otp == user.getOtp()) {
 			flag = true;
 		}
-
 		return flag;
 	}
 

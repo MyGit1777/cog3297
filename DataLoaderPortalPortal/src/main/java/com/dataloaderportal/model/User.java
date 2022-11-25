@@ -1,5 +1,6 @@
 package com.dataloaderportal.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,8 +23,9 @@ public class User {
 	private long userId;
 	private String firstName;
 	private String lastName;
+	@Column(unique=true)
 	private String userName; // E-mail
 
 	private String password;
-
+	private int otp;
 }
