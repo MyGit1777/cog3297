@@ -7,8 +7,8 @@ import { Patient } from '../patient';
   providedIn: 'root'
 })
 export class PatientServiceService {
-  
-  
+
+
   url = 'http://localhost:8082/patient';
   constructor(private http: HttpClient) { }
 
@@ -16,13 +16,13 @@ export class PatientServiceService {
   getPatient(patientName: string): Observable<any> {
     return this.http.get<Patient>(`${this.url}/getByPatientName/` + patientName);
   }
-  uploadData(data:any){
-  return this.http.post(`${this.url}/uploadData`, data)
+  uploadData(data: any) {
+    return this.http.post(`${this.url}/uploadData`, data)
   }
 
   updatePatientDetails(patient: Patient) {
     return this.http.put(`${this.url}/updatePatient`, patient)
   }
-  
-  
+
+
 }
