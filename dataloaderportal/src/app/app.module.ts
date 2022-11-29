@@ -32,6 +32,7 @@ import { ForgotpasswordfirstComponent } from './components/forgotpasswordfirst/f
 import { ForgotpasswordsecondComponent } from './components/forgotpasswordsecond/forgotpasswordsecond.component';
 import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
 import {MatTabsModule} from '@angular/material/tabs';
+// import {MatFileUploadModule} from './components/file-upload/file-upload.core';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatNativeDateModule,
     MatButtonModule,
     MatIconModule,
-    MatTabsModule
+    MatTabsModule,
+    // MatFileUploadModule
   ]})
 export class AppModule { }
