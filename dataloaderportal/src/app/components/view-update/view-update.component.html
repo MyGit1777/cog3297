@@ -1,1 +1,62 @@
-<p>view-update works!</p>
+<div class="bootstrap-wrapper big-banner full-height">
+  <div class="container col-md-7 margin-t text-center full-height">
+
+
+    <div style="margin-top: 150px;" class="container col-md-7 margin-t text-center">
+      <h1>Update patient details</h1>
+
+
+      <form ngNativeValidate #updatePatientForm="ngForm" (ngSubmit)="getPatientDetails()">
+        <!-- {{patient | json}}  -->
+        <div class="form-group  container col-md-5">
+
+          <!-- <label for="logo">File &nbsp;</label>  -->
+          <!-- <input style="margin-bottom: 50px;" type="file" (change)="onFileChanged($event)"> -->
+
+
+        </div>
+        <div class="form-group container col-md-5">
+          <label for="bookTitle">Enter Patient Name</label>
+           <input type="text" [(ngModel)]="patientName" class="form-control"  name="bookTitle">
+        </div>
+        <button style="margin-top: 10px;" type="submit" class="btn btn-success margin-t">Search</button>
+        <button type="submit" style="margin-left: 5px; margin-top: 10px;" class="btn btn-secondary margin-t"
+          (click)="gotoHome()">Back</button>
+      </form>
+
+      <h2> Results</h2>
+      <!-- <p style="color: red;"> All books based on search</p> -->
+      <table class="table"> 
+      <thead class="thead-dark"> </thead>
+      <tr>
+      <th>Patient Name</th>
+      <th>Email</th>
+      <th>Address</th>
+      <th>DOB</th>
+      <th>Phone</th>
+      </tr>
+      <tbody>  
+     <!-- <tr *ngIf="patient">
+      <td colspan="5" style="text-align:center"><h2> No books yet!!</h2>
+      </td>
+      </tr>  -->
+    <tr> 
+        <td>  {{patient.patientName}}</td>
+        <td>  {{patient.emailId}}</td>
+        <td>  {{patient.address}}</td>
+        <td>  {{patient.dob}}</td>
+        <td>  {{patient.phoneNumber}}</td>
+      <td>
+        <button type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updatePatient()">Update</button>
+      </td>
+      
+      </tr> 
+      </tbody>
+      </table>
+    </div>
+  </div>
+  <footer style="color:black; background-color: rgb(63,81,181);" class="footer fixed-bottom">
+
+    <p style="text-align:center; margin-top: 10px;">@Copyright 2022-23. All rights reserved. </p>
+
+  </footer>
