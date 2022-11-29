@@ -1,6 +1,7 @@
 package com.patientservice.helper;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.NumberToTextConverter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.patientservice.model.Patient;
 
 import java.io.InputStream;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -63,9 +65,6 @@ public class ExcelToDBHelper {
 					Cell cell = cells.next();
 
 					switch (cellId) {
-//					case 0:
-//						patient.setPatientId(Long.valueOf(cell.getStringCellValue()));
-//						break;
 					case 0:
 						patient.setPatientName(cell.getStringCellValue());
 						break;
@@ -73,16 +72,17 @@ public class ExcelToDBHelper {
 						patient.setAddress(cell.getStringCellValue());
 						break;
 					case 2:
+						
 						Date date = cell.getDateCellValue();
-						String formattedDate = dateFormatter.format(date);
-						patient.setDOB(formattedDate);
+						DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+						String strDate = dateFormat.format(date);
+						patient.setDOB(strDate);
 						break;
 
 					case 3:
 						patient.setEmailId(cell.getStringCellValue());
 						break;
 					case 4:
-						System.out.println(cell.getNumericCellValue());
 						String phoneNo = NumberToTextConverter.toText(cell.getNumericCellValue());
 						patient.setPhoneNumber(phoneNo);
 						break;
