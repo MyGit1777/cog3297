@@ -15,6 +15,9 @@ export class ForgotpasswordfirstComponent implements OnInit {
   ngOnInit(): void {
   }
   sendOTP() {
+    if(this.email == '' || this.email == null){
+      alert("Please enter your mail");
+    }else{
     console.log("Inside send otp" + this.email);
     this.loginservice.forgotPassword(this.email).subscribe(
       (result: any) => {
@@ -32,5 +35,6 @@ export class ForgotpasswordfirstComponent implements OnInit {
 
       }
     )
+    }
   }
 }

@@ -21,7 +21,11 @@ export class LoginComponent implements OnInit {
     
   }
   onSubmit() {
+    let cred = this.credentials;
+    if(cred.userName=='' || cred.userName==null || cred.password==''|| cred.password == null){
+      alert("Please check required fields");
 
+    } else{
     console.log("Ready to send credentials");
     this.loginservice.performLogin(this.credentials).subscribe(
       (result: any) => {
@@ -39,5 +43,6 @@ export class LoginComponent implements OnInit {
       }
 
     )
+  }
   }
 }
