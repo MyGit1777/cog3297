@@ -29,14 +29,15 @@ public class PatientController {
 	private PatientService patientService;
 
 	@PostMapping("/uploadData")
-	public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) {
+	public boolean upload(@RequestParam("file") MultipartFile file) {
 		if (ExcelToDBHelper.checkFileFormat(file)) {
 
 			this.patientService.savePatientData(file);
-
-			return ResponseEntity.ok("Data saved successfully");
+			return true;
+//			return ResponseEntity.ok("Data saved successfully");
 		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong, please check file format");
+		return false;
+//		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong, please check file format");
 	}
 
 	@GetMapping("/getAllPatients")
