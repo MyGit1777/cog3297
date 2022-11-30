@@ -9,12 +9,12 @@ import { Patient } from '../patient';
 export class PatientServiceService {
 
 
-  url = 'http://localhost:8082/patient';
+  url = 'http://localhost:8081/dataloader';
   constructor(private http: HttpClient) { }
 
 
   getPatient(patientName: string): Observable<any> {
-    return this.http.get<Patient>(`${this.url}/getByPatientName/` + patientName);
+    return this.http.get<Patient>(`${this.url}/getPatient/` + patientName);
   }
   uploadData(data: any) {
     return this.http.post(`${this.url}/uploadData`, data)
