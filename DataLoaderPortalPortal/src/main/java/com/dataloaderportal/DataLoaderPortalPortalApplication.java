@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -35,4 +36,11 @@ public class DataLoaderPortalPortalApplication {
 	}
 		};
 	}
+	
+	@Bean
+	public RestTemplate restTemplate() {
+
+		return new RestTemplate();
+	}
+	
 }

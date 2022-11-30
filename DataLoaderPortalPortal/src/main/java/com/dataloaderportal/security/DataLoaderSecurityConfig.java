@@ -91,6 +91,9 @@ public class DataLoaderSecurityConfig  extends WebSecurityConfigurerAdapter{
 				.antMatchers("/dataloader/verifyOTP").permitAll()
 				.antMatchers("/dataloader/createUser").permitAll()
 				.antMatchers("/dataloader/updateUser").permitAll()
+				.antMatchers("/dataloader/getPatient/{patientName}").permitAll()
+				.antMatchers("/dataloader/uploadData").permitAll()
+				.antMatchers("/dataloader/updatePatient").permitAll()
 				.antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
 				.anyRequest().authenticated().and().
 				exceptionHandling().and().sessionManagement()
