@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { InductPatientComponent } from './components/induct-patient/induct-patient.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProcessComponent } from './components/process/process.component';
+import { UpdateComponent } from './components/update/update.component';
 import { ViewUpdateComponent } from './components/view-update/view-update.component';
 import { AuthgurdGuard } from './services/authgurd.guard';
 
@@ -31,6 +32,12 @@ const routes: Routes = [
   {
     path: 'induct',
     component: InductPatientComponent,
+    pathMatch: 'full',
+  },
+  
+  {
+    path: 'updatePatient',
+    component: UpdateComponent,
     pathMatch: 'full',
   },
   {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { PatientServiceService } from 'src/app/services/patient-service.service';
 
 @Component({
   selector: 'app-induct-patient',
@@ -6,31 +8,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./induct-patient.component.css']
 })
 export class InductPatientComponent implements OnInit {
-
-  constructor() { }
+  selectedFile: any
+  constructor(private route: Router, private patientService: PatientServiceService) { }
 
   ngOnInit(): void {
   }
-  inductPatient(){
-
-
+  inductPatient() {
+    const uploadData = new FormData();
+    uploadData.append('file', this.selectedFile);
+    this.patientService.uploadData(uploadData).subscribe
+      (
+        (data: any) => {
+          console.log("Data uploaded successfully");
+          alert("Data uploaded successfully");
+          this.route.navigate(['home']);
+        },
+        error => {
+          console.log("Error while uploading data");
+          alert("Data uploading failed");
+        }
+      )
   }
 
-  gotoHome(){
-
-
+  gotoHome() {
+    return this.route.navigate(['home']);
   }
 
-  public onFileChanged(event:any) {
+  public onFileChanged(event: any) {
     console.log(event);
-    // this.selectedFile = event.target.files[0];
-
-    // // Below part is used to display the selected image
-    // let reader = new FileReader();
-    // reader.readAsDataURL(event.target.files[0]);
-    // reader.onload = (event2) => {
-    //   this.imgURL = reader.result;
-    // };
+    this.selectedFile = event.target.files[0];
 
   }
 }

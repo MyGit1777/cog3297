@@ -32,6 +32,7 @@ import { ForgotpasswordfirstComponent } from './components/forgotpasswordfirst/f
 import { ForgotpasswordsecondComponent } from './components/forgotpasswordsecond/forgotpasswordsecond.component';
 import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { UpdateComponent } from './components/update/update.component';
 // import {MatFileUploadModule} from './components/file-upload/file-upload.core';
 
 @NgModule({
@@ -49,6 +50,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     ForgotpasswordfirstComponent,
     ForgotpasswordsecondComponent,
     ChangepasswordComponent,
+    UpdateComponent,
      ],
     providers: [LoginServiceService, AuthModifier, [{provide:HTTP_INTERCEPTORS, useClass:AuthModifier, multi:true}]],
      bootstrap: [AppComponent],
