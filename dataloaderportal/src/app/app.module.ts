@@ -33,7 +33,8 @@ import { ForgotpasswordsecondComponent } from './components/forgotpasswordsecond
 import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { UpdateComponent } from './components/update/update.component';
-// import {MatFileUploadModule} from './components/file-upload/file-upload.core';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -69,6 +70,5 @@ import { UpdateComponent } from './components/update/update.component';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    // MatFileUploadModule
-  ]})
+    MatProgressSpinnerModule  ]})
 export class AppModule { }

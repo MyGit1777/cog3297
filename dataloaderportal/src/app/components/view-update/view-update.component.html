@@ -3,9 +3,8 @@
 
 
     <div style="margin-top: 150px; margin-bottom: 10px;" class="container col-md-7 margin-t text-center">
-      <h1>MODIFY THE PATIENT DETAILS</h1>
-
-
+      <h1 *ngIf="flowName=='processData'">PROCESS THE DATA</h1>
+      <h1 *ngIf="flowName=='updateData'">MODIFY THE PATIENT DETAILS</h1>
       <form ngNativeValidate #updatePatientForm="ngForm" (ngSubmit)="getPatientDetails()">
         <!-- {{patient | json}}  -->
         <div class="form-group  container col-md-5">
@@ -20,6 +19,8 @@
            <input type="text" required [(ngModel)]="patientName" class="form-control"  name="bookTitle">
         </div>
         <button style="margin-top: 10px;" type="submit" class="btn btn-success margin-t">Search</button>
+        <mat-spinner></mat-spinner>
+
         <button type="submit" style="margin-left: 5px; margin-top: 10px;" class="btn btn-secondary margin-t"
           (click)="gotoHome()">Back</button>
       </form>
@@ -47,7 +48,8 @@
         <td>  {{patient.dob}}</td>
         <td>  {{patient.phoneNumber}}</td>
       <td>
-        <button type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updatePatient()">Update</button>
+        <button *ngIf="flowName=='updateData'" type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updatePatient()">Update</button>
+        <button *ngIf="flowName=='processData'" type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="processData()">Process</button>
       </td>
       
       </tr> 

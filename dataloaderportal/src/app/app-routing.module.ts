@@ -41,7 +41,7 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'viewAndUpdate',
+    path: 'viewAndUpdate/:flowname',
     component: ViewUpdateComponent,
     pathMatch: 'full',
   },

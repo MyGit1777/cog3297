@@ -21,6 +21,10 @@ export class UpdateComponent implements OnInit {
     this.patient.dob = this.actRoute.snapshot.params['dob'];
     this.patient.address = this.actRoute.snapshot.params['address'];
     this.patient.phoneNumber = this.actRoute.snapshot.params['phoneNumber'];
+    this.patient.drugId = this.actRoute.snapshot.params['drugId'];
+    this.patient.drugName = this.actRoute.snapshot.params['drugName'];
+    this.patient.inductedStatus = this.actRoute.snapshot.params['inductedStatus'];
+
     console.log("This is received upate patient:"+ this.patient.patientName);
   }
 

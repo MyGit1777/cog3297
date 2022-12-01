@@ -7,6 +7,7 @@ import { Patient } from '../patient';
   providedIn: 'root'
 })
 export class PatientServiceService {
+  
 
 
   url = 'http://localhost:8081/dataloader';
@@ -21,8 +22,7 @@ export class PatientServiceService {
   }
 
   updatePatientDetails(patient: Patient) {
+    console.log("checking inducted status in p service"+ patient.inductedStatus);
     return this.http.put(`${this.url}/updatePatient`, patient)
   }
-
-
 }

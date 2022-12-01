@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginServiceService } from 'src/app/services/login-service.service';
 
 @Component({
@@ -8,8 +9,8 @@ import { LoginServiceService } from 'src/app/services/login-service.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private loginservice: LoginServiceService) { }
-
+  constructor(private route: Router, private loginservice: LoginServiceService) { }
+  flowname='';
   ngOnInit(): void {
 
     this.loginservice.getUser().subscribe(
@@ -18,11 +19,22 @@ export class HomeComponent implements OnInit {
         console.log("User caall exceuted"+ result);
       },
       error => {
-        console.log("User caall failed"+ error);
+        console.log("User call failed"+ error);
 
       }
 
     )
   }
+  processData(){
+    this.flowname='processData'
+    let flowname = this.flowname;
 
+    this.route.navigate(['/viewAndUpdate', flowname]);
+  }
+
+  updateData(){
+    this.flowname='updateData'
+    let flowname = this.flowname;
+    this.route.navigate(['/viewAndUpdate', flowname]);
+  }
 }

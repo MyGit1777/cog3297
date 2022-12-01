@@ -7,4 +7,5 @@ export class Patient {
   phoneNumber!: string
   drugId!: number
   drugName!: string
+  inductedStatus!: string
 }
