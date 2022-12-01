@@ -60,13 +60,22 @@ public class ExcelToDBHelper {
 				int cellId = 0;
 
 				Patient patient = new Patient();
-				SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/dd/yyyy");
+				StringBuffer validationMessage = new StringBuffer("Invalid parameters:");
+				patient.setValidationMessage(validationMessage);
+				DateValidatorUsingDateFormat dateValidator = new DateValidatorUsingDateFormat("MM-dd-yyyy");
+
 				while (cells.hasNext()) {
 					Cell cell = cells.next();
 
 					switch (cellId) {
 					case 0:
 						patient.setPatientName(cell.getStringCellValue());
+						if(!ValidationHelper.validateName(cell.getStringCellValue())) {
+							validationMessage.append(" patientName");
+							patient.setValidationMessage(validationMessage);
+							patient.setDataValid(false);							
+						}
+						
 						break;
 					case 1:
 						patient.setAddress(cell.getStringCellValue());
@@ -74,20 +83,51 @@ public class ExcelToDBHelper {
 					case 2:
 						
 						Date date = cell.getDateCellValue();
-						DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+						DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
 						String strDate = dateFormat.format(date);
-						patient.setDOB(strDate);
+						
+						if(dateValidator.isValid(strDate)){
+							
+							patient.setDOB(strDate);
+						}else {
+							patient.setValidationMessage(patient.getValidationMessage().append(" DOB"));
+							patient.setDataValid(false);							
+						}
+						
 						break;
 
 					case 3:
-						patient.setEmailId(cell.getStringCellValue());
+						
+						
+						if(ValidationHelper.patternMatches(cell.getStringCellValue())) {
+							patient.setEmailId(cell.getStringCellValue());	
+						}else {
+							patient.setValidationMessage(patient.getValidationMessage().append(" email"));
+							patient.setDataValid(false);	
+						}
+						
 						break;
 					case 4:
 						String phoneNo = NumberToTextConverter.toText(cell.getNumericCellValue());
-						patient.setPhoneNumber(phoneNo);
+						if(ValidationHelper.validatePhoneNumber(phoneNo)) {
+							
+							patient.setPhoneNumber(phoneNo);	
+						}else {
+							patient.setValidationMessage(patient.getValidationMessage().append(" phoneNumber"));
+							patient.setDataValid(false);
+						}
+						
 						break;
 					case 5:
-						patient.setDrugId((int) cell.getNumericCellValue());
+						if(cell.getCellType().equals(cell.getCellType().STRING) && ValidationHelper.validateDrugId(cell.getStringCellValue())) {
+							patient.setDrugId(cell.getStringCellValue());
+							
+						}else {
+							patient.setValidationMessage(patient.getValidationMessage().append(" drugId"));
+							patient.setDataValid(false);
+						}
+						
+						
 						break;
 					case 6:
 						patient.setDrugName(cell.getStringCellValue());
@@ -98,7 +138,7 @@ public class ExcelToDBHelper {
 					cellId++;
 
 				}
-
+				patient.setInductedStatus(ProcessStatus.INDUCTED.toString());
 				patientsList.add(patient);
 //				workbook.close();
 			}
