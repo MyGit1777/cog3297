@@ -17,6 +17,7 @@ public class Patient {
 	private String phoneNumber;
 	private String drugId;
 	private String drugName;
+	private String inductedStatus;
 
 	public Patient(Patient patient) {
 	}
