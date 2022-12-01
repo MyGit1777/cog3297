@@ -15,7 +15,7 @@ public class Patient {
 	private String DOB;
 	private String emailId;
 	private String phoneNumber;
-	private int drugId;
+	private String drugId;
 	private String drugName;
 
 	public Patient(Patient patient) {
