@@ -8,18 +8,18 @@
         </div>
         <h1 class="text-center" style="color:black ;"> Login here</h1>
 
-        <form (ngSubmit)="onSubmit()">
+        <form ngNativeValidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <mat-form-field appearance="outline">
             <mat-label>User name</mat-label>
-            <input required [(ngModel)]="credentials.userName" name="userName" type="text" matInput />
+            <input formControlName="userName" type="text" matInput />
           </mat-form-field><br>
           <mat-form-field appearance="outline">
             <mat-label>Password</mat-label>
-            <input [(ngModel)]="credentials.password" name="password" required type="password" matInput />
+            <input formControlName="password" required type="password" matInput />
           </mat-form-field>
           <div class="container text-center">
 
-            <button type="submit" mat-raised-btn color="primary">Login</button>
+            <button [disabled]="loginForm.invalid" type="submit" mat-raised-btn color="primary">Login</button>
             <a style="text-decoration:none; margin-left:5px ;" routerLink="/forgotpassword">Forgot password?</a>
           </div>
         </form>

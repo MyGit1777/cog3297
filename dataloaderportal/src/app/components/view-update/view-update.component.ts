@@ -12,6 +12,7 @@ export class ViewUpdateComponent implements OnInit {
   patientName!: string
   patient = new Patient();
   flowName: any;
+  waitingFlag= false;
   constructor(private router: Router,private actRoute: ActivatedRoute, private patientService: PatientServiceService) { }
 
   ngOnInit(): void {
@@ -25,7 +26,10 @@ export class ViewUpdateComponent implements OnInit {
       console.log("This is returned patient" + data);
       this.patient = data;
       console.log("This is returned patient :" + this.patient.patientName);
-    }, error => console.log(error));
+    }, error => {      
+      console.log(error)
+    alert("Something went wrong, could not find patient!");
+    });
 
   }
   gotoHome() {
@@ -41,9 +45,11 @@ export class ViewUpdateComponent implements OnInit {
   }
 
   processData(){
+    this.waitingFlag=true;
     this.patient.inductedStatus='PROCESSED'
     let patientProcess = this.patient
     this.patientService.updatePatientDetails(patientProcess).subscribe(data => {
+      this.waitingFlag=false;
       console.log("Data processed successfully");
       alert("Data processed successfully!");
       this.router.navigate(['home']);

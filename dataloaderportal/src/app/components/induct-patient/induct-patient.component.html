@@ -13,7 +13,7 @@
           <!-- <label for="logo">File &nbsp;</label> -->
           <input required style="margin-bottom: 50px;" type="file" (change)="onFileChanged($event)">
 
-
+          <mat-spinner *ngIf="waitingFlag" style="margin-bottom:10px ;"></mat-spinner>
         </div>
 
         <button type="submit" class="btn btn-success margin-t">Upload</button>

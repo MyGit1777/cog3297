@@ -6,6 +6,8 @@ import { User } from '../user';
   providedIn: 'root'
 })
 export class LoginServiceService {
+// return this.httpClient.get<any>("http://localhost:8081/dataloader/2", {headers, responseType: 'text' as 'json'});
+
 
   email: any
   url = "http://localhost:8081/dataloader"
@@ -76,4 +78,8 @@ export class LoginServiceService {
 
     return this.httpClient.post(`${this.url}/updateUser`, user)
   }
+
+  createUser (user: User) {
+    return this.httpClient.post(`${this.url}/createUser`, user)
+}
 }

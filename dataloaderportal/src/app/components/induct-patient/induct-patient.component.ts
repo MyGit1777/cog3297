@@ -9,16 +9,20 @@ import { PatientServiceService } from 'src/app/services/patient-service.service'
 })
 export class InductPatientComponent implements OnInit {
   selectedFile: any
+  waitingFlag= false;
   constructor(private route: Router, private patientService: PatientServiceService) { }
 
   ngOnInit(): void {
   }
   inductPatient() {
+    this.waitingFlag=true;
     const uploadData = new FormData();
     uploadData.append('file', this.selectedFile);
     this.patientService.uploadData(uploadData).subscribe
       (
         (data: any) => {
+          this.waitingFlag= false;
+
           console.log("Data uploaded successfully");
           alert("Data uploaded successfully");
           this.route.navigate(['home']);

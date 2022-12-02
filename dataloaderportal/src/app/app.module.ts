@@ -34,6 +34,7 @@ import { ChangepasswordComponent } from './components/changepassword/changepassw
 import {MatTabsModule} from '@angular/material/tabs';
 import { UpdateComponent } from './components/update/update.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -70,5 +71,6 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatButtonModule,
     MatIconModule,
     MatTabsModule,
-    MatProgressSpinnerModule  ]})
+    MatProgressSpinnerModule,
+    ReactiveFormsModule ]})
 export class AppModule { }
