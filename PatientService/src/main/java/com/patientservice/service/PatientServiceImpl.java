@@ -54,8 +54,8 @@ public class PatientServiceImpl implements PatientService {
 
 	@Override
 	public Patient getPatientByName(String patientName) {
-
-		return patientRepo.findByPatientName(patientName);
+		List<Patient>  allPatients = this.patientRepo.findAll();
+		return allPatients.stream().filter(patient-> patient.getPatientName().equals(patientName)).findFirst().get();
 	}
 
 	@Override
