@@ -24,6 +24,11 @@ public class PatientServiceImpl implements PatientService {
 	@Autowired
 	private InvalidPatientRepository invalidPatientRepo;
 	
+	public PatientServiceImpl(PatientRepository patientRepo2) {
+			this.patientRepo = patientRepo2;
+			
+	}
+
 	@Override
 	public void savePatientData(MultipartFile file) {
 
