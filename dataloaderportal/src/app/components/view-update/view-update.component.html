@@ -35,6 +35,8 @@
       <th>Address</th>
       <th>DOB</th>
       <th>Phone</th>
+      <th *ngIf="flowName=='processData'">Drug ID</th>
+      <th *ngIf="flowName=='processData'">Drug Name</th>
       </tr>
       <tbody>  
      <!-- <tr *ngIf="patient">
@@ -47,6 +49,8 @@
         <td>  {{patient.address}}</td>
         <td>  {{patient.dob}}</td>
         <td>  {{patient.phoneNumber}}</td>
+        <td *ngIf="flowName=='processData'">  {{patient.drugId}}</td>
+        <td *ngIf="flowName=='processData'">  {{patient.drugName}}</td>
       <td>
         <button *ngIf="flowName=='updateData'" type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="updatePatient()">Update</button>
         <button *ngIf="flowName=='processData'" type="button" style="margin-left: 5px;" class="btn btn-secondary" (click)="processData()">Process</button>
