@@ -1,8 +1,10 @@
-<!-- <div class="bootstrap-wrapper big-banner full-height"> -->
-  <div class="container col-md-7 margin-t text-center full-height">
+<div class="bootstrap-wrapper big-banner full-height">
+  <div class="container col-md-8 margin-t text-center">
 
+    <div  class="row">
+      <div class="col-md-6 offset-md-3" style="margin-top:100px ;">
 
-    <div style="margin-top: 150px; margin-bottom: 10px;" class="container col-md-7 margin-t text-center">
+    <div class="container text-center">
       <h1 *ngIf="flowName=='processData'">PROCESS THE DATA</h1>
       <h1 *ngIf="flowName=='updateData'">MODIFY THE PATIENT DETAILS</h1>
       <form ngNativeValidate #updatePatientForm="ngForm" (ngSubmit)="getPatientDetails()">
@@ -25,9 +27,11 @@
           (click)="gotoHome()">Back</button>
       </form>
     </div>
+  </div>
+    </div>
       <!-- <h2> Results</h2> -->
       <!-- <p style="color: red;"> All books based on search</p> -->
-      <table *ngIf="patient.patientId" class="table"> 
+      <table *ngIf="patient.patientId" class="table text-light"> 
       <thead class="thead-dark"> </thead>
       <tr>
       <th>Patient Name</th>
@@ -39,10 +43,7 @@
       <th *ngIf="flowName=='processData'">Drug Name</th>
       </tr>
       <tbody>  
-     <!-- <tr *ngIf="patient">
-      <td colspan="5" style="text-align:center"><h2> No books yet!!</h2>
-      </td>
-      </tr>  -->
+    
     <tr> 
         <td>  {{patient.patientName}}</td>
         <td>  {{patient.emailId}}</td>
@@ -59,8 +60,10 @@
       </tr> 
       </tbody>
       </table>
-   
+  
+  
   </div>
+</div>
   <footer style="color:black; background-color: rgb(63,81,181);" class="footer fixed-bottom">
 
     <p style="text-align:center; margin-top: 10px;">@Copyright 2022-23. All rights reserved. </p>

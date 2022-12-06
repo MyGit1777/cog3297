@@ -1,28 +1,43 @@
 <div class="bootstrap-wrapper big-banner full-height">
+  <div class="container col-md-8 margin-t text-center">
 
-<div style="margin-top: 50px;" class="container col-md-7 margin-t text-center">
-  <h1>Register yourself!!</h1>
+    <div class="row">
+      <div class="col-md-6 offset-md-3" style="margin-top:100px ;">
 
-  <form ngNativeValidate #addform="ngForm" (ngSubmit)="addNewUser()">
-    <div class="form-group container col-md-4">
-      <label for="firstName">First Name</label>
-      <input required type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName">
+        <div class="container text-center">
+          <h1>Register yourself!!</h1>
+
+          <form ngNativeValidate #addform="ngForm" (ngSubmit)="addNewUser()">
+            <div class="form-group container col-md-4">
+              <label for="firstName">First Name</label>
+              <input required type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName">
+            </div>
+            <div class="form-group container col-md-4">
+              <label for="lastName">Last Name</label>
+              <input type="text" class="form-control" required [(ngModel)]="user.lastName" name="lastName">
+            </div>
+            <div class="form-group container col-md-4">
+              <label for="userName">Email</label>
+              <input email type="text" class="form-control" required [(ngModel)]="user.userName" name="userName">
+            </div>
+            <div class="form-group container col-md-4">
+              <label for="password">Password</label>
+              <input minlength="8" maxlength="20" type="password" class="form-control" required
+                [(ngModel)]="user.password" name="password">
+            </div>
+
+            <button [disabled]="addform.invalid" style="margin-top: 10px;" type="submit"
+              class="btn btn-success margin-t">Submit</button>
+            <button style="margin-top: 10px; margin-left: 5px;" type="submit" class="btn btn-secondary margin-t"
+              routerLink="/home">Back</button>
+          </form>
+        </div>
+      </div>
     </div>
-  <div class="form-group container col-md-4">
-    <label for="lastName">Last Name</label>
-    <input type="text" class="form-control" required [(ngModel)]="user.lastName" name="lastName">
   </div>
-  <div class="form-group container col-md-4">
-    <label for="userName">Email</label>
-    <input email type="text" class="form-control" required [(ngModel)]="user.userName" name="userName">
-  </div>
-    <div class="form-group container col-md-4">
-      <label for="password">Password</label>
-      <input minlength="8" maxlength="20" type="password" class="form-control" required [(ngModel)]="user.password" name="password">
-    </div>
-  
-    <button [disabled]="addform.invalid" style="margin-top: 10px;" type="submit" class="btn btn-success margin-t">Submit</button>
-    <button  style="margin-top: 10px; margin-left: 5px;" type="submit" class="btn btn-secondary margin-t" routerLink="/home">Back</button>
-  </form>
 </div>
-</div>
+<footer style="color:black; background-color: rgb(63,81,181);" class="footer fixed-bottom">
+
+  <p style="text-align:center; margin-top: 10px;">@Copyright 2022-23. All rights reserved. </p>
+
+</footer>
